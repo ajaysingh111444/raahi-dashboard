@@ -1,0 +1,167 @@
+/* .pgc-login-header li a{color:#707070; font-weight:100;}
+.login-header-nav{background: #f1f2f6; border-bottom: 1.5px solid #bcbcbd;} */
+
+.admin-login-section{
+    height:auto;
+}
+.admin-login-textbox{
+    border-radius: 40px; 
+    padding-left: 25px; 
+    margin: 15px 0px;
+}
+.admin-login-now-btn{
+    border-radius: 40px; 
+    background: #a42a6a; 
+    color: #fff; 
+    margin-top: 30px; 
+    padding: 10px 40px;
+}
+.createaccountbtn{
+    border-radius: 40px; 
+    background: #a42a6a; 
+    color: #fff; 
+    padding: 10px 40px; 
+    text-decoration: none; 
+    display: inline-block;
+}
+.admin-login-account-section{
+    text-align:center; 
+    position:relative; 
+    border-left:1px solid #ced4da;
+}
+.login-color-gray{
+    color:#707070;
+}
+.login-section-footer{
+    width:100%; 
+    padding: 30px; 
+    background: #fff; 
+    text-align: center;
+}
+.pgc-link{
+    color:#000; 
+    font-weight:600; 
+    text-decoration: none;
+}
+.login-section-footer p{
+    margin-bottom: 0px;
+}
+.admin-login-padding{
+    padding-top: 105px;
+}
+.admin-login-account-section::before{
+    content: 'OR';
+    position: absolute;
+    left: 0;
+    /* transform: rotate(-90deg); */
+    z-index: 000700;
+    margin-left: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #fff;
+    padding: 10px 0px;
+}
+.login-admin-container{
+    background: #fff; 
+    padding: 20px;
+}
+
+/* Added by Akhilesh */
+.select-wrap {
+    border-radius: 40px;
+    margin: 15px 0px;
+    padding-right: 20px;
+    border: 1px solid #ced4da;
+}
+
+select.form-control.admin-login-textbox {
+    border: 0;
+    margin: 0;
+}
+
+.invalid-feedback {
+    display: block;
+}
+
+/* Form Step Header CSS starts - @Author: Akhilesh */
+.form-step-header {
+    align-items: center;
+    display: flex;
+}
+.form-step-header .line {
+    background-color: rgba(0,0,0,.12);
+    flex: 1 0 32px;
+    margin: auto;
+    min-height: 1px;
+    min-width: 1px;
+}
+.form-step-header .step {
+    align-items: center;
+    background-color: initial;
+    border: none;
+    border-radius: .25rem;
+    color: #6c757d;
+    display: inline-flex;
+    flex-wrap: wrap;
+    font-size: 1rem;
+    font-weight: 700;
+    justify-content: center;
+    line-height: 1.5;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color .15s ease-out,color .15s ease-out;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.form-step-header .step span.step-circle {
+    align-content: center;
+    background-color: #6c757d;
+    border-radius: 1em;
+    color: #fff;
+    display: inline-flex;
+    height: 2em;
+    justify-content: center;
+    line-height: 1em;
+    margin: .25rem;
+    padding: .5em 0;
+    width: 2em;
+}
+
+.form-step-header .step.active span.step-circle {
+    background-color: #007bff !important;
+}
+
+.form-step-header .step span.step-label {
+    display: inline-block;
+    margin: .25rem;
+}
+/* Form Step Header CSS ends here */
+
+input#phone {
+    padding-left: 40px;
+}
+
+button.calendar, button.calendar:active {
+    width: 2.75rem;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAcCAYAAAAEN20fAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEUSURBVEiJ7ZQxToVAEIY/YCHGxN6XGOIpnpaEsBSeQC9ArZbm9TZ6ADyBNzAhQGGl8Riv4BLAWAgmkpBYkH1b8FWT2WK/zJ8ZJ4qiI6XUI3ANnGKWBnht2/ZBDRK3hgVGNsCd7/ui+JkEIrKtqurLpEWaphd933+IyI3LEIdpCYCiKD6HcuOa/nwOa0ScJEnk0BJg0UTUWJRl6RxCYEzEmomsIlPU3IPW+grIAbquy+q6fluy/28RIBeRMwDXdXMgXLj/B2uimRXpui4D9sBeRLKl+1N+L+t6RwbWrZliTTTr1oxYtzVWiTQAcRxvTX+eJMnlUDaO1vpZRO5NS0x48sIwfPc87xg4B04MCzQi8hIEwe4bl1DnFMCN2zsAAAAASUVORK5CYII=') !important;
+    background-repeat: no-repeat;
+    background-size: 23px;
+    background-position: center;
+}
+
+button.btn.calendar {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    border: none;
+    height: calc(1.5em + .75rem + 2px);
+}
+
+.form-control[readonly] {
+    background-color: #fff;
+}

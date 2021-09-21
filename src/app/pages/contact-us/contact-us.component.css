@@ -1,0 +1,15 @@
+.btn.disabled, .btn:disabled {
+    cursor: not-allowed;
+}
+
+.page-heading {
+    background-image: url(/assets/img/page-banner/contact-us.png);
+    background-position: center top;
+}
+
+.help-txt {
+    font-size: 12px;
+}
+.help-txt.err{
+    color: #dc3545;
+}

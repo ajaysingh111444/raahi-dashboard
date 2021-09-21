@@ -1,0 +1,67 @@
+<section class="admin-login-section guest-bg">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="row mb-4">
+                    <div class="col-lg-2">
+                        <img src="./assets/images/Admin-login/3281-200.png" />
+                    </div>
+                    <div class="col-lg-10">
+                        <h4 class="login-color-gray">Keep everthing Sync</h4>
+                        <p class="login-color-gray">Dnim eiusmod high life accusamus terry richardson ado squid.</p>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-lg-2">
+                        <img src="./assets/images/Admin-login/4157618-200.png" />
+                    </div>
+                    <div class="col-lg-10">
+                        <h4 class="login-color-gray">Emails & Calendars is with you</h4>
+                        <p class="login-color-gray">Dnim eiusmod high life accusamus terry richardson ado squid.</p>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-lg-2">
+                        <img src="./assets/images/Admin-login/1956555-200.png" />
+                    </div>
+                    <div class="col-lg-10">
+                        <h4 class="login-color-gray">Simple Elegant & Super Fast</h4>
+                        <p class="login-color-gray">Dnim eiusmod high life accusamus terry richardson ado squid.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="login-admin-container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h4 class="login-color-gray">Admin Panel Login</h4>
+                            <p class="login-color-gray">Fill your details to get in</p>
+                        </div>
+                        <div class="col-lg-6">
+                            <form class="contact-form bg-white shadow rounded p-4" [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+                                <input type="email" class="form-control admin-login-textbox" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="Email" />
+                                <div *ngIf="(submitted || f.email.touched) && f.email.errors" class="invalid-feedback">
+                                    <div *ngIf="f.email.errors.required">Email is required.</div>
+                                    <div *ngIf="f.email.hasError('pattern')">Please enter a valid email.</div>
+                                </div>
+                                <input type="password" class="form-control admin-login-textbox" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="Password" />
+                                <div *ngIf="(submitted || f.password.touched) && f.password.errors" class="invalid-feedback">
+                                    <div *ngIf="f.password.errors.required">Password is required</div>
+                                </div>
+                                <input type="submit" class="btn admin-login-now-btn" value="Login Now" />
+                            </form>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="admin-login-account-section">
+                                <p class="login-color-gray">Don't have an account?</p>
+                                <a routerLink="/register" class="createaccountbtn mb-3">Create Account</a>
+                                <p class="login-color-gray">Forgot Password</p>
+                                <a routerLink="/forgetpassword" class="createaccountbtn mb-3">Forgot Password</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

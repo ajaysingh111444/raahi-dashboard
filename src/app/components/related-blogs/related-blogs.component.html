@@ -1,0 +1,24 @@
+<ngx-slick-carousel *ngIf="relatedBlogsData" class=" case-slider slick-slide-100_0" #slickModal="slick-carousel"
+    [config]="slideConfig" (init)="slickInit($event)">
+    <div ngxSlickItem *ngFor="let blog of relatedBlogsData" class="col-xl-4 col-lg-6">
+        <div class="">
+            <div class="case-item-slider ">
+                <div class="case-item-p">
+                    <div class="img-warpper">
+                        <a routerLink="/blogs/{{blog?.slug}}">
+                            <img src="{{blog?.featuredimage}}" alt="{{blog?.slug}}" class="img-fluid blr">
+                        </a>
+                    </div>
+                    <div class="content-wrap">
+                        <h6 class=" title">
+                            {{blog?.title}}
+                        </h6>
+                        <p [innerHTML]="getDescriptionsData(blog?.description)"></p>
+                        <a routerLink="/blogs/{{blog?.slug}}" class="text-primary opacity-1  font-weight-bold">Read
+                            More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ngx-slick-carousel>

@@ -1,0 +1,174 @@
+<div class="d-flex" style="background-color:#f1f5f8">
+   <div class="col-lg-3 p-4">
+      <app-left-side></app-left-side>
+   </div>
+   <div class="col-lg-9 p-4">
+      <a href="javascript:void"><i class="icon-material-outline-arrow-left-alt text-primary mr-2 arrow-l  cursor" ></i> <i class="icon-material-outline-arrow-right-alt text-primary arrow-l mr-2 cursor" ></i></a>
+      <div class="row">
+         <div class="col-lg-8">
+            <div class="row">
+               <div class="col-lg-3 text-center " *ngFor="let s of imgs">
+                  <div class="shadow-lg rounded-lg bg-white pt-4">
+                     <img src="assets/img/d/{{s.img}}" class="img-fluid">
+                     <h6 class="font-weight-600 pt-3">{{s.t}}</h6>
+                     <h4 class="pb-3">{{s.n}}</h4>
+                  </div>
+               </div>
+            </div>
+            <div class="row mt-3">
+               <div class="col-lg-12">
+                  <div class="card bg-white shadow-lg border-0 ">
+                     <a data-toggle="collapse" href="#collapseP" role="button" aria-expanded="true" aria-controls="collapseP" class="bg-transparent sha  cursor border-0  btn-block p2-3  with-chevron"><a class="d-flex align-items-center justify-content-between mb-0 px-3 py-2"><a href="javascript:void(0)" class="text-primary">View all Project </a><i class="fa fa-angle-down"></i></a>
+                     </a>
+                   <div class="card-body" id="collapseP">
+                        <table class="w-100 bg-white table">
+                           <thead class=" p-2">
+                              <th>Assigned</th>
+                              <th>Project Name</th>
+                              <th>Due Date</th>
+                              <th>Pripority</th>
+                           </thead>
+                           <tbody class="p-2" *ngFor="let s of imgs.slice(0,2); let i = index">
+                              <td>
+                                 <div class="media">
+                                    <img src="assets/img/pr.png" alt="John Doe" class="mr-3 mt-3 rounded-circle img-fluid">
+                                    <div class="media-body">
+                                       <h6 class="mb-0">John Doe</h6>
+                                       <p class="mb-0"><small>Full Stack Developer</small></p>
+                                    </div>
+                                 </div>
+                              </td>
+                              <td>PGC Content</td>
+                              <td>28/08/2021</td>
+                              <td><small class="badge badge-pill badge-success" >High</small></td>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-lg-4">
+            <div class="shadow-lg rounded-lg bg-white">
+               <a data-toggle="collapse" href="#collapseTeam" role="button" aria-expanded="true" aria-controls="collapseTeam" class="bg-transparent sha  cursor border-0  btn-block p2-3  with-chevron">
+                <a class="d-flex align-items-center justify-content-between mb-0 px-3 py-2"><a href="javascript:void(0)" class="text-primary">Team Member </a><i class="fa fa-angle-down"></i></a>
+              </a>
+              <div class=" p-4" id="collapseTeam">
+                <div class="media mb-4" *ngFor="let s of members; let i = index">
+                  <img src="assets/img/pr.png" alt="John Doe" class="mr-3 mt-3 rounded-circle img-fluid">
+                  <div class="media-body">
+                     <h6 class="mb-0">John Doe</h6>
+                     <p class="mb-0"><small>Full Stack Developer</small></p>
+                  </div>
+               </div>
+              </div>
+            </div>
+         </div>
+      </div>
+      <div class="row pt-3">
+         <div class="col-lg-12">
+            <div class="shadow-lg rounded-lg bg-white">
+               <a data-toggle="collapse" href="#collapseCase" role="button" aria-expanded="true" aria-controls="collapseCase" class="bg-transparent sha  cursor border-0  btn-block p2-3  with-chevron">
+                <a class="d-flex align-items-center justify-content-between mb-0 px-3 py-2"><a href="javascript:void(0)" class="text-primary">View Cases List </a><i class="fa fa-angle-down"></i></a>
+              </a>
+               <table class="w-100 table collapse" id="collapseCase">
+                  <thead class="bg-header text-white p-2">
+                     <th>S.N</th>
+                     <th>Case No.</th>
+                     <th>Patients Name</th>
+                     <th>Case Status</th>
+                     <th>Hospital Name</th>
+                     <th>Registered Date</th>
+                     <th>Location</th>
+                     <th>Case Details</th>
+                  </thead>
+                  <tbody class="p-2 " *ngFor="let s of imgs; let i = index">
+                     <td>{{i+1}}</td>
+                     <td>PGC123WE</td>
+                     <td>Gyanvee</td>
+                     <td>Inprogress</td>
+                     <td>Navbharti Hospital</td>
+                     <td>25/08/2021</td>
+                     <td>UP</td>
+                     <td><a class="badge badge-pill badge-info" href="javascript:void(0)">Donwnload</a></td>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+      <div class="row mt-3">
+         <div class="col-lg-7">
+            <div class="card bg-white shadow-lg border-0 ">
+               <a data-toggle="collapse" href="#collapseDonor" role="button" aria-expanded="true" aria-controls="collapseDonor" class="bg-transparent sha  cursor border-0  btn-block p2-3  with-chevron">
+                <a class="d-flex align-items-center justify-content-between mb-0 px-3 py-2"><a href="javascript:void(0)" class="text-primary">View all Donors  </a><i class="fa fa-angle-down"></i></a>
+              </a>
+               <div class="card-body collapse" id="collapseDonor">
+                  <table class="w-100 bg-white table">
+                     <thead class=" p-2">
+                        <th>S.No.</th>
+                        <th>Transaction Id</th>
+                        <th>Donar Name</th>
+                        <th>Case Name</th>
+                        <th>Amount</th>
+                     </thead>
+                     <tbody class="p-2" *ngFor="let s of imgs.slice(0,2); let i = index">
+                        <td>{{i+1}}</td>
+                        <td>PGC0555511DE{{i+1}}</td>
+                        <td>Mukesh Chauhan</td>
+                        <td>Gyanvee </td>
+                        <td>200{{i+1}}</td>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+         <div class="col-lg-5">
+            <div class="card bg-white shadow-lg border-0 ">
+               <a data-toggle="collapse" href="#collapseS" role="button" aria-expanded="true" aria-controls="collapseS" class="bg-transparent sha  cursor border-0  btn-block p2-3  with-chevron">
+                <a class="d-flex align-items-center justify-content-between mb-0 px-3 py-2"><a href="javascript:void(0)" class="text-primary">View all Subscribe  </a><i class="fa fa-angle-down"></i></a>
+              </a>
+               <div class="card-body text-center  collapse " id="collapseS">
+                  <img src="assets/img/newsletter.png" class="img-fluid">
+                  <h5>3000+</h5>
+                  <p>Total Newsletter</p>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="row mt-3">
+         <div class="col-lg-12">
+            <div class="card bg-white shadow-lg border-0 ">
+              <a data-toggle="collapse" href="#collapseTask" role="button" aria-expanded="true" aria-controls="collapseTask" class="bg-transparent sha  cursor border-0  btn-block p2-3  with-chevron">
+                <a class="d-flex align-items-center justify-content-between mb-0 px-3 py-2"><a href="javascript:void(0)" class="text-primary">+ Add New Task  </a><i class="fa fa-angle-down"></i></a>
+              </a>
+               <div class="card-body">
+                  <table class="w-100 bg-white table collapse" id="collapseTask">
+                     <thead class=" p-2">
+                        <th>S.No</th>
+                        <th>Task Name</th>
+                        <th>Assigned By</th>
+                        <th>Assigned To</th>
+                        <th>Due Date</th>
+                        <th>Create at</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                     </thead>
+                     <tbody class="p-2" *ngFor="let s of imgs; let i = index">
+                        <td>{{i+1}}</td>
+                        <td>PGC Content</td>
+                        <td>Swati Agrwal</td>
+                        <td>PGC Content</td>
+                        <td>28/08/2021</td>
+                        <td>02/08/2021</td>
+                        <td><small class="badge badge-pill badge-success" >High</small></td>
+                        <td>
+                           <p class="text-success font-weight-600">Completed</p>
+                        </td>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

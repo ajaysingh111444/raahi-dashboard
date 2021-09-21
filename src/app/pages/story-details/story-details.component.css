@@ -1,0 +1,15 @@
+p{
+	font-size: 18px;
+}
+.heading-size{font-size:2.1rem;}
+.social-share-img {
+    width: 100%;
+}
+.social-share-img {
+    border-radius: 25px;
+}
+
+
+.list-group-horizontal { display: block; text-align: center;}
+.list-group-item{border:none; padding: 4px; background-color: transparent; margin-right:5px; display: inline-block;}
+.list-group-item a img{width:35px;}

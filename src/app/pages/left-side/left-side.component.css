@@ -1,0 +1,12 @@
+.rounded-xl{
+	border-radius: 50%;
+}
+.left-side{
+   color: #a42a6a;
+   font-weight: 500;
+   font-size: 21px;
+}
+
+.userinfo {
+   text-align: center;
+}

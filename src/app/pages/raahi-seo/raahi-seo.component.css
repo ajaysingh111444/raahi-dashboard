@@ -1,0 +1,26 @@
+.bg-header_t{
+	background: #ffd6de;
+}
+.bg-header{
+	background: #a42a6a;
+}
+.position-abs{
+
+}
+
+.date_text {
+    position: absolute;
+    transform: translate(-50%, 50%);
+    left: 38%;
+    background: #a42a6a;
+    top: 0%;
+    padding: 18px;
+    color: #fff;
+    font-weight: 900;
+}
+
+.arrow-l {
+    font-size: 25px;
+    display: block;
+    text-align: right;
+}

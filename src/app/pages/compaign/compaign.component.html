@@ -1,0 +1,57 @@
+<div class="d-flex" style="background-color:#f1f5f8">
+   <div class="col-lg-3 p-4">
+      <app-left-side></app-left-side>
+   </div>
+   <div class="col-lg-9 p-4">
+       <a href="javascript:void"><i class="icon-material-outline-arrow-left-alt text-primary mr-2 arrow-l  cursor" ></i> <i class="icon-material-outline-arrow-right-alt text-primary arrow-l mr-2 cursor" ></i></a>
+      <div class="shadow-lg rounded-lg bg-white p-4">
+         <form>
+            <div class="row">
+               <div class="col-lg-6">
+                  <div class="form-group">
+                     <label for="text">Campaign Name</label>
+                     <input type="text" class="form-control bg-light" placeholder="Enter Campaign Name" id="Campaign">
+                  </div>
+               </div>
+               <div class="col-lg-6">
+                  <div class="form-group">
+                     <label for="text">Campaign Type</label>
+                     <select class="form-control bg-light" name="Campaign_type">
+                        <option>New</option>
+                        <option>Old Campaign</option>
+                     </select>
+                  </div>
+               </div>
+               <div class="col-lg-4">
+                  <div class="form-group">
+                     <label for="date">Start Date</label>
+                     <input type="date" class="form-control bg-light" placeholder="Start Date" id="start_date">
+                  </div>
+               </div>
+               <div class="col-lg-4">
+                  <div class="form-group">
+                     <label for="date">End Date</label>
+                     <input type="date" class="form-control bg-light" placeholder="End Date" id="end_date">
+                  </div>
+               </div>
+               <div class="col-lg-4">
+                  <div class="form-group">
+                     <label for="text">Select Status</label>
+                     <select class="form-control bg-light" name="Campaign_type">
+                        <option>Success</option>
+                        <option>Failded</option>
+                     </select>
+                  </div>
+               </div>
+               <div class="col-lg-12">
+                  <div class="form-group">
+                     <label for="text">Campaign Description</label>
+                     <textarea class="form-control bg-light" rows="5" placeholder="Write Campaign Description Here"></textarea>
+                  </div>
+               </div>
+               <button type="submit" class="btn btn-main text-center m-auto mt-4">Submit</button>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>

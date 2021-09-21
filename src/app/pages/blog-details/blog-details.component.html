@@ -1,0 +1,123 @@
+<!--About Section-->
+<section class="my-4" *ngIf="blogData">
+    <div class="container">
+        <div class="row mb-3">
+            <div class="col-12">
+                <h1 class="pb-2 mb-3">{{blogData?.title}}</h1>
+            </div>
+            <div class="col-lg-8">
+                <div *ngIf="urlSafe" class="embed-responsive embed-responsive-16by9 mb-3">
+                    <iframe class="embed-responsive-item" [src]="urlSafe" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+                <div *ngIf="!urlSafe" class="embed-responsive embed-responsive-16by9 mb-3">
+                    <img src="{{blogData?.featuredimage}}" alt="Mousam" class="img-fluid w-100">
+                </div>
+
+                <div class="tab-content tab-content-margin">
+                    <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                        <p [innerHTML]="blogData?.description"></p>
+                        <div class="row mt-4 mb-4">
+                            <div class="col-lg-6 col-lg-6 mb-4 mb-lg-0">
+
+                                <img src="{{blogData?.featuredimage}}" alt="Mousam" class="img-fluid w-100">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <app-refers></app-refers>
+            </div>
+            <div class="col-lg-4 text-center mt-4 mt-lg-0">
+                <div class="d-a-block sticky">
+                    <div class="pink-bg-color">
+                        <form class="row g-3 needs-validation" [formGroup]="enquiryForm" (ngSubmit)="onSubmitEnquiry()">
+                            <div class="col-md-12">
+                                <input type="text" id="name" formControlName="name" pattern="[a-zA-Z\s]+"
+                                    [(ngModel)]="data.name" [ngClass]="{'is-invalid':f.name.touched &&   f.name.errors}"
+                                    class="form-control bottom-border" placeholder="Name" required>
+                                <div *ngIf="f.name.touched && f.name.errors" class="invalid-feedback text-left">
+                                    <div *ngIf="f.name.errors.required">Name is required</div>
+                                    <div *ngIf="f.name.errors.pattern">Name should be Alpha vise only</div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 my-3">
+                                <input type="text" id="email" formControlName="email" [(ngModel)]="data.email"
+                                    [ngClass]="{ 'is-invalid': f.email.touched && f.email.errors}"
+                                    class="form-control bottom-border" placeholder="Email id" required>
+                                <div *ngIf="f.email.touched && f.email.errors" class=" text-left invalid-feedback">
+                                    <div *ngIf="f.email.errors.required">Email Address is required</div>
+                                    <div *ngIf="f.email.errors.pattern">Email must be a valid email address (
+                                        abc@gmail.com)</div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="text" id="mobile" formControlName="mobile" [(ngModel)]="data.mobile"
+                                    [ngClass]="{ 'is-invalid':f.mobile.touched  && f.mobile.errors}" minlength="10"
+                                    maxlength="10" (keypress)="numericOnly($event)"
+                                    onKeyPress="if(this.value.length==10) return false;"
+                                    class="form-control bottom-border" placeholder="Contact No.">
+                                <div *ngIf="f.mobile.touched && f.mobile.errors" class="invalid-feedback text-left">
+                                    <div *ngIf="f.mobile.errors.pattern">Please Enter 10 digit Mobile Number</div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="submit" class="btn proceed-btn" [disabled]="enquiryForm.invalid"
+                                    value="Donate Now" />
+                            </div>
+                        </form>
+
+                        <div class="details-span text-center">
+                            <strong>Details for direct bank transfers</strong><br />
+                            <hr />
+                            <strong>For bank account details - </strong><br />
+                            <a class="text-primary cursor" (click)="goToBankDetails('#goToBankDetailsElement',-100,1000)">Click Here</a>
+                        </div>
+                        <ul class="list-group list-group-horizontal mb-4">
+                            <li class="list-group-item">
+                            <a href="https://www.youtube.com/channel/UCu7lrKfGWsb92bGeKIvmfmQ" target="_blank"><img  src="./assets/img/social/8.png" /></a></li>
+                            <li class="list-group-item"><a href="https://twitter.com/HWCglobalCure" target="_blank"><img src="./assets/img/social/9.png" /></a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="https://www.facebook.com/raahi/" target="_blank">
+                                    <img src="./assets/img/social/10.png" />
+                                </a> 
+                            </li>
+                            <li class="list-group-item">
+                                <a href="https://web.whatsapp.com/send?text=Help this young mother save her child and find her lost husband."
+                                    target="_blank"><img src="./assets/img/social/whatsapp icon.png" /></a> </li>
+                            <li class="list-group-item"><a href="https://www.instagram.com/raahi/" target="_blank"><img
+                                        src="./assets/img/social/intsagram.png" /></a> </li>
+                            <li class="list-group-item"><a href="https://www.linkedin.com/company/raahi/"
+                                    target="_blank"><img src="./assets/img/social/linkedin@4x.png" /></a> </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <app-socialshare type='facebook' [shareUrl]='currentPageUrl'>
+                </app-socialshare>
+                <app-socialshare type='twitter' [shareUrl]='currentPageUrl'>
+                </app-socialshare>
+                <app-socialshare type='instagram' [shareUrl]='currentPageUrl'>
+                </app-socialshare>
+                <app-socialshare type='linkedin' [shareUrl]='currentPageUrl'>
+                </app-socialshare>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="medical-cases   position-relative ">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 class="mb-4">Other Blogs</h2>
+            </div>
+        </div>
+        <app-related-blogs [relatedBlogsData]='relatedBlogsData'></app-related-blogs>
+
+    </div>
+</section>
+<app-newsletter></app-newsletter>

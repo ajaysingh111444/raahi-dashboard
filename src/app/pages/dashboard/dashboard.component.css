@@ -1,0 +1,35 @@
+.bg-header{
+	background: #a42a6a; 
+}
+.sha{
+	box-shadow:0 .95rem .75rem rgba(30,34,40,.02)!important;
+}
+.table thead th, td {
+    vertical-align: middle;
+    border-bottom: 1px solid #dee2e6 !important;
+}
+.table tbody+tbody {
+    border-top: 1px solid #dee2e6;
+}
+.bg-header-form{
+	background: #ffd6de;
+}
+.border-radius-0{
+	border-radius: 0;
+}
+.btn-main{
+	border-radius: 40px; 
+	background: #a42a6a; 
+	color: #fff;
+    margin-top: 30px;
+    padding: 10px 40px;
+}
+.arrow-l {
+    font-size: 25px;
+    display: block;
+    text-align: right;
+}
+.with-chevron[aria-expanded='true'] i {
+  display: block;
+  transform: rotate(180deg) !important;
+}

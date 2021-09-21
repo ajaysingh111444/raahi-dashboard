@@ -1,0 +1,14 @@
+.bg-header{
+	background: #f1d9cd; 
+}
+.rounded-xl {
+   border-radius: 1.3rem!important;
+}
+.bg-header_t{
+	background: #ffd6de;
+}
+.arrow-l {
+    font-size: 25px;
+    display: block;
+    text-align: right;
+}

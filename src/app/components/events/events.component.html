@@ -1,0 +1,136 @@
+<section class="live-events-section">
+   <img src="assets/img/event/yoga.jpg" class="img-fluid" />
+</section>
+<section class="live-events-section pt-3">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <p>Every individual is fighting a battle between their mind and body, coping with day to day stress. On this <strong>International Yoga Day</strong>, we have organized a 
+               yoga session to nourish your mind and body. 
+            </p>
+            <p>Our soul needs a dose of nourishment and spiritual connection to stay at peace. Yoga is a spiritual discipline that connects us with our inner self 
+               feeding the soul.
+            </p>
+            <ul class="list-inline">
+               <li>1. Meditation and breathing Asanas with Om chanting.</li>
+               <li>2. Stress management Asanas.</li>
+               <li>3. Yoga Asanas to increase flexibility and body conditioning.</li>
+               <li>4. Asanas for bodyweight management.</li>
+               <li>5. Asanas related to particular diseases such as diabetes and blood pressure.
+               </li>
+            </ul>
+            <p><strong>Come and join for a healthier version of yourself.</strong></p>
+         </div>
+      </div>
+   </div>
+</section>
+<section class="live-events-section">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12 offset-md-0">
+            <div class="row">
+               <div class="col-sm-12">
+                  <form class="contact-form bg-white shadow rounded pl-4 pr-4 my-5 form-border-top" [formGroup]="contactForm" (ngSubmit)="onSubmitContactForm()">
+                  <header class="form-head pt-3">
+                     <h1 class="barlow-font ">International Yoga Day
+                     </h1>
+                     <p class="pb-3 pt-2">Event Timing: June 21st, 2021, 07:00AM To 08:00AM</p>
+                  </header>
+                  <div class="row">
+                     <div class="col-sm-12 col-lg-6  form-group">
+                        <label>Name <span class="validators-astric">*</span></label>
+                        <br> 
+                        <input name="name"   id="name" pattern="[a-zA-Z\s]+"   formControlName="name"    [(ngModel)]="data.name"  class="form-control" required  aria-invalid="true" [ngClass]="{'is-invalid':f.name.touched &&  f.name.errors}" type="text"  appDisableAutofill>
+                        <div *ngIf="f.name.touched &&  f.name.errors" class="invalid-feedback">
+                           <div *ngIf="f.name.errors.required">Name is required</div>
+                           <div *ngIf="f.name.errors.pattern">Only Alphabets Allowed</div>
+                        </div>
+                     </div>
+                     <div class="col-sm-12 col-lg-6  form-group">
+                        <label>Date of Birth <span class="validators-astric">*</span></label>
+                        <br>
+                        <input name="dob"  [min]="minDob" [max]="maxDob"  formControlName="dob" [(ngModel)]="data.dob"  placeholder="DOB"  id="dob" type="date" [ngClass]="{ 'is-invalid': f.dob.touched && f.dob.errors}" class="form-control" appDisableAutofill>
+                        <div *ngIf="f.dob.touched &&  f.dob.errors" class="invalid-feedback">
+                           <div *ngIf="f.dob.errors.min"> Date of Birth is Worng</div>
+                           <div *ngIf="f.dob.errors.max"> Date of Birth is Worng</div>
+                        </div>   
+                     </div>
+                     <div class="col-sm-12 col-lg-6  form-group">
+                        <label>Email <span class="validators-astric">*</span></label>
+                        <br>
+                        <input name="email" id="email"   formControlName="email"  [(ngModel)]="data.email" [ngClass]="{ 'is-invalid': f.email.touched && f.email.errors}"   class="form-control" required  aria-invalid="true" type="email" placeholder="Enter Your Email" appDisableAutofill>
+                        <div *ngIf="f.email.touched && f.email.errors" class="invalid-feedback">
+                           <div *ngIf="f.email.errors.required">Email Name is required</div>
+                           <div *ngIf="f.email.errors.pattern">Email must be a valid email address ( abc@gmail.com)</div>
+                        </div>
+                     </div>
+                     <div class="col-sm-12 col-lg-6  form-group">
+                        <label>Mobile Number (zoom and facebook link will be shared on Whatsapp) <span class="validators-astric">*</span></label>
+                        <br>
+                        <input name="mobile" id="phone_2"  minlength="12" maxlength="16"   type="tel"   formControlName="mobile" placeholder="+91 0000000000"   [(ngModel)]="data.mobile" class="form-control" aria-invalid="true"    [ngClass]="{ 'is-invalid': f.mobile.touched && f.mobile.errors}"  (keypress)="numericOnly($event)" onKeyPress="if(this.value.length==16) return false;" appDisableAutofill>
+                        <div *ngIf="f.mobile.touched && f.mobile.errors" class="invalid-feedback d-block">
+                           <div *ngIf="f.mobile.errors">Mobile Number is requird</div>
+                            <div *ngIf="f.mobile.errors.minlength">Please Enter 10 digit Mobile Number</div>
+                            <div *ngIf="f.mobile.errors.maxlength">Please Enter 10 digit Mobile Number</div>
+                        </div>
+                     </div>
+                     <div class="col-sm-12 col-lg-6  form-group">
+                        <label>Organization</label>
+                        <br>
+                        <input name="organization" id="organization"  [(ngModel)]="data.organization"  placeholder="Organization" formControlName="organization" class="form-control" type="text" appDisableAutofill>
+                     </div>
+                     <div class="col-sm-12 col-lg-6  form-group">
+                        <label>Raise Your query if you need to ask the fitness coach</label>
+                        <br>
+                        <input name="query" id="query"  formControlName="query"  [(ngModel)]="data.query" class="form-control"   aria-invalid="true" type="text" appDisableAutofill>
+                     </div>
+                     <div class="col-sm-12 col-lg-6  form-group">
+                        <div class="form-group">
+                           <label>Gender  <span class="validators-astric">*</span></label><br/>
+                           <label><input  formControlName="gender"  [(ngModel)]="data.gender" type="radio" name="gender" value="Male" checked required /> Male</label><br/>
+                           <label><input formControlName="gender" type="radio"  [(ngModel)]="data.gender" name="gender"  value="Female" required  /> Female</label><br/>
+                           <label><input formControlName="gender" type="radio"  [(ngModel)]="data.gender"  name="gender"  value="Prefer-not-to-say" required /> Prefer not to say</label><br/>
+                           <div *ngIf="f.gender.touched && f.gender.errors" class="invalid-feedback">
+                              <div *ngIf="f.gender.errors.required">
+                                 Gender is required
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-sm-12 col-lg-6  form-group">
+                        <label>Do you like/follow us? (Please click on the links provided below, like & follow our page)</label>
+                        <br>
+                        <div class="form-group display-inline">
+                           <input type="checkbox" name="social" (click)="openUrl('https://www.facebook.com/raahi/')" id="Facebook">
+                           <label for="Facebook" > Facebook -<a target="_blank" href="https://www.facebook.com/raahi/">https://www.facebook.com/raahi/</a></label>
+                        </div>
+                        <div class="form-group display-inline">
+                           <input type="checkbox" name="social" (click)="openUrl('https://twitter.com/HWCglobalCure')" id="Twitter">
+                           <label for="Twitter"> Twitter -<a target="_blank" href="https://twitter.com/HWCglobalCure">https://twitter.com/HWCglobalCure</a></label>
+                        </div>
+                        <div class="form-group display-inline">
+                           <input type="checkbox"  (click)="openUrl('https://www.instagram.com/raahi/')"  id="Instagram">
+                           <label for="Instagram"> Instagram -<a target="_blank" href="https://www.instagram.com/raahi/">https://www.instagram.com/raahi/</a></label>
+                        </div>
+                        <div class="form-group display-inline">
+                           <input type="checkbox"  (click)="openUrl('https://www.linkedin.com/company/raahi')" id="LinkedIn">
+                           <label for="LinkedIn"> LinkedIn -<a target="_blank" href="https://www.linkedin.com/company/raahi">https://www.linkedin.com/company/raahi</a></label>
+                        </div>
+                        <div class="form-group display-inline">
+                           <input type="checkbox"  (click)="openUrl('https://youtube.com/c/raahi')" id="YouTube">
+                           <label for="YouTube"> YouTube -<a target="_blank" href="https://youtube.com/c/raahi"> https://youtube.com/c/raahi</a></label>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-sm-12 text-center mt-4 mb-3">
+                        <button type="submit"   [disabled]="contactForm.invalid"  class="btn btn-donate">Submit</button>
+                     </div>
+                  </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>

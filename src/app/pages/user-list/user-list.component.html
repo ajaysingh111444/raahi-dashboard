@@ -1,0 +1,129 @@
+<div class="d-flex" style="background-color:#f1f5f8">
+	<div class="col-lg-3 p-4">
+		<app-left-side></app-left-side>
+	</div>
+	<div class="col-lg-9 p-4">
+		 <a href="javascript:void"><i class="icon-material-outline-arrow-left-alt text-primary mr-2 arrow-l  cursor" ></i> <i class="icon-material-outline-arrow-right-alt text-primary arrow-l mr-2 cursor" ></i></a>
+		<div class="row">
+         <div class="col-lg-6 text-left">
+            <h5>Active User</h5>
+         </div>
+         <div class="col-lg-6 text-lg-right">
+            <a href="javascript:void(0)" data-toggle="modal" data-target=".add_user" class="text-primary text-underline">+ Add New User</a>
+         </div>
+         <div class="col-lg-12">
+            <table class="table table-striped">
+               <thead class="bg-header_t text-primary">
+                  <tr>
+                     <th>S.No</th>
+                     <th>User Name</th>
+                     <th>User Type</th>
+                     <th>Start Date</th>
+                     <th>End Date</th>
+                     <th>Status</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr *ngFor="let t of tables; let i = index">
+                     <td>{{i+1}}</td>
+                     <td>{{t.c_name}}</td>
+                     <td>{{t.c_type}}</td>
+                     <td>{{t.s_date}}</td>
+                     <td>{{t.e_date}}</td>
+                     <td><i class="icon-feather-edit text-primary mr-2 cursor" data-toggle="modal" data-target=".campaigns_edit"></i> <i class="icon-feather-trash-2 cursor text-primary"></i></td>
+                  </tr>
+               </tbody>
+            </table>
+            <nav aria-label="Page navigation example text-lg-right">
+              <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+              </ul>
+            </nav>
+         </div>
+      </div>	
+	</div>
+</div>
+<div class="modal fade campaigns_edit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content shadow-lg mb-3">
+       <div class="modal-body">
+      <div class="">
+         <div class="row ">
+            <div class="col-lg-6">
+               <h6>Edit Blog</h6>
+            </div>
+            <div class="col-lg-6 text-lg-right">
+               <i class="icon-feather-save text-primary mr-2 cursor"></i> <i data-dismiss="modal" aria-label="Close" class="icon-feather-x cursor text-primary"></i>
+            </div>
+         </div>
+          <div class="card-body">
+            <img src="assets/img/d/1.png">
+            <div>
+               <small class="font-weight-600">Title</small>
+            <input type="text" class="form-control border-0" name="Title" value="Lorme ipsume clu skd fdkd">   
+            </div>
+            <div class="">
+                <small class="font-weight-600">Body</small>
+            <textarea rows="4" class="form-control border-0 text-left">
+               In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.
+            </textarea>
+            </div>
+            
+          </div>
+         <div class="card-footer border-0 bg-transparent"><a href="javascript:void(0)" class="btn-main">Submit</a></div>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade add_user" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content shadow-lg mb-3 p-4">
+          <div class="row">
+            <div class="col-lg-6">
+               <h6>Add User</h6>
+            </div>
+            <div class="col-lg-6 text-lg-right">
+               <i data-dismiss="modal" aria-label="Close" class="icon-feather-x cursor text-primary"></i>
+            </div>
+         </div>   
+            <form>
+            <div class="row">
+               <div class="col-lg-6">
+                   <div class="form-group">
+                      <label for="text">First Name</label>
+                      <input type="text" class="form-control bg-light" placeholder="First Name" id="f_name">
+                    </div>
+               </div>
+               <div class="col-lg-6">
+                <div class="form-group">
+                   <label for="text">Last Name</label>
+                   <input type="text" class="form-control bg-light" placeholder="Last Name" id="l_name">
+                 </div>
+               </div>
+               <div class="col-lg-6">
+                   <div class="form-group">
+                      <label for="text">User Name</label>
+                      <input type="text" class="form-control bg-light" placeholder="Usr Name" id="u_name">
+                    </div>
+               </div>
+               <div class="col-lg-6">
+                   <div class="form-group">
+                      <label for="text">Contact</label>
+                      <input type="text" class="form-control bg-light" placeholder="Contact" id="c_name">
+                    </div>
+               </div>
+               <div class="col-lg-12">
+                     <button type="submit" class="btn btn-main text-center m-auto mt-4">Submit</button>
+               </div>
+            </div>
+         </form>  
+      </div>
+    </div>
+  </div>
+<!-- Modal -->

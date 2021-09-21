@@ -1,0 +1,25 @@
+@font-face {
+  font-family:'verdana';	
+  src:url("https://web.raahi.org/fonts/verdana.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family:'Georgia';
+  src:url("https://web.raahi.org/fonts/Georgia.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family:'Jokerman';
+  src:url("https://web.raahi.org/fonts/Jokerman.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family:'Mistral';
+  src:url("https://web.raahi.org/fonts/Mistral.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+}

@@ -1,0 +1,121 @@
+<div class="d-flex" style="background-color:#f1f5f8">
+	<div class="col-lg-3 p-4">
+		<app-left-side></app-left-side>
+	</div>
+	<div class="col-lg-9 p-4">
+		 <!--a href="javascript:void"><i class="icon-material-outline-arrow-left-alt text-primary mr-2 arrow-l  cursor" ></i> <i class="icon-material-outline-arrow-right-alt text-primary arrow-l mr-2 cursor" ></i></a-->
+		<div class="row">
+			<div class="col-lg-3">
+				<div class="shadow-lg rounded-lg bg-white p-4 text-center">
+					<img src="assets/img/profile.jpg" class="img-fluid rounded-circle">
+					<h6>{{auth.currentUser?.firstName}} {{auth.currentUser?.lastName}}</h6>
+					<small>{{auth.currentUser?.email}}</small>
+					<div class="d-flex mt-3">
+						<button type="button" class="btn btn-primary mr-3">Chat</button>
+                        <button type="button" class="btn btn-secondary">Follow</button>
+					</div>
+				</div>
+				<div class="shadow-lg rounded-lg bg-white p-3  mt-4">
+					<a href="javascript:void(0)" class="text-primary d-flex align-items-center "><i class="icon-feather-user mr-2 "></i> My Profile</a>
+					<a href="javascript:void(0)" class="text-dark d-flex align-items-center mr-2"><i class="icon-feather-user mr-2"></i> Edit Profile</a>
+					<a href="javascript:void(0)" class="text-dark d-flex align-items-center mr-2"><i class="icon-material-outline-https mr-2"></i> Reset Password</a>
+					<a href="javascript:void(0)"  (click)="logout()" class="text-dark cursor d-flex align-items-center mr-2"><i class="icon-material-outline-https  mr-2"></i> My Logout</a>
+				</div>
+			</div>
+			<div class="col-lg-9">
+				<div class="shadow-lg rounded-lg bg-white p-4">
+					<h5 class="text-primary">My Profile</h5>
+					<form>
+				<div class="row">
+					<div class="col-lg-6">
+						 <div class="form-group">
+						    <label for="text">First Name</label>
+						    <input type="text" class="form-control bg-light" value="{{auth.currentUser?.firstName}}" placeholder="First Name" id="compaign">
+						  </div>
+					</div>
+					<div class="col-lg-6">
+						 <div class="form-group">
+						    <label for="text">Last Name</label>
+						    <input type="text"  value="{{auth.currentUser?.lastName}}" class="form-control bg-light" placeholder="Last Name" id="compaign">
+						  </div>
+					</div>
+					<div class="col-lg-6">
+						 <div class="form-group">
+						    <label for="text">Middle Name</label>
+						    <input type="text" value="{{auth.currentUser?.middleName}}" class="form-control bg-light" placeholder="Middle Name" id="compaign">
+						  </div>
+					</div>
+					<div class="col-lg-6">
+						 <div class="form-group">
+						    <label for="text">Phone No</label>
+						    <input type="text" value="{{auth.currentUser?.phoneNumber}}" class="form-control bg-light" placeholder="Phone No" id="compaign">
+						  </div>
+					</div>
+					<div class="col-lg-6">
+						 <div class="form-group">
+						    <label for="text">Dob</label>
+						    <input type="text" value="{{auth.currentUser?.dob}}" class="form-control bg-light" placeholder="10-june-2001" id="compaign">
+						  </div>
+					</div>
+					<div class="col-lg-6">
+						 <div class="form-group">
+						    <label for="text">Gender</label>
+						    <input type="text" value="{{auth.currentUser?.gender}}" class="form-control bg-light" placeholder="Gender" id="compaign">
+						  </div>
+					</div>
+					<div class="col-lg-6">
+						 <div class="form-group">
+						    <label for="text">Email</label>
+						    <input type="email" value="{{auth.currentUser?.email}}" class="form-control bg-light" placeholder="Enter Email Id" id="compaign">
+						  </div>
+					</div>
+					<div class="col-lg-6">
+						 <div class="form-group">
+						    <label for="text">Password</label>
+						    <input type="password"  class="form-control bg-light" placeholder="Enter Password" id="compaign">
+						  </div>
+					</div>
+					<div class="col-lg-6">
+						 <div class="form-group">
+						    <label for="text">Address1</label>
+						    <input type="text" value="{{auth.currentUser?.address1}}" class="form-control bg-light" placeholder="222 Sector 62" id="compaign">
+						  </div>
+					</div>
+					<div class="col-lg-6">
+						 <div class="form-group">
+						    <label for="text">Address2</label>
+						    <input type="text" value="{{auth.currentUser?.address2}}" class="form-control bg-light" placeholder="Nodia" id="compaign">
+						  </div>
+					</div>
+					<div class="col-lg-6">
+						 <div class="form-group">
+						    <label for="text">City</label>
+						    <input type="text" value="{{auth.currentUser?.city}}" class="form-control bg-light" placeholder="City" id="compaign">
+						  </div>
+					</div>
+					<div class="col-lg-6">
+						 <div class="form-group">
+						    <label for="text">State</label>
+						    <input type="text" value="{{auth.currentUser?.state}}" class="form-control bg-light" placeholder="State" id="compaign">
+						  </div>
+					</div>
+					<div class="col-lg-6">
+						 <div class="form-group">
+						    <label for="text">Country</label>
+						    <input type="text" value="{{auth.currentUser?.country}}" class="form-control bg-light" placeholder="Country" id="compaign">
+						  </div>
+					</div>
+					<div class="col-lg-6">
+						 <div class="form-group">
+						    <label for="text">Postal Code</label>
+						    <input type="text" value="{{auth.currentUser?.postalcode}}" class="form-control bg-light" placeholder="Enter Postal Code" id="compaign">
+						  </div>
+					</div>
+					<button type="submit" class="btn btn-main text-center m-auto mt-4">Submit</button>
+				</div>
+			</form>
+		       </div>
+			</div>
+		</div>
+	</div>	
+</div>			

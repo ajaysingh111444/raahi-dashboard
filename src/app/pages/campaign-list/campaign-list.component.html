@@ -1,0 +1,81 @@
+<div class="d-flex" style="background-color:#f1f5f8">
+	<div class="col-lg-3 p-4">
+		<app-left-side></app-left-side>
+	</div>
+	<div class="col-lg-9 p-4">
+		 <a href="javascript:void"><i class="icon-material-outline-arrow-left-alt text-primary mr-2 arrow-l  cursor" ></i> <i class="icon-material-outline-arrow-right-alt text-primary arrow-l mr-2 cursor" ></i></a>
+		<div class="shadow-lg rounded-lg bg-white p-0">
+		 <div class="card">
+		    <div class="card-header bg-header text-white text-center">Campaign Search</div>
+		    <div class="card-body">
+		    <form>
+			   <div class="row">
+					<div class="col-lg-6">
+						 <div class="form-group">
+						    <label for="text">Campaign Name</label>
+						    <input type="text" class="form-control bg-light" placeholder="Enter Campaign Name" id="Campaign">
+						  </div>
+					</div>
+					<div class="col-lg-6">
+						 <div class="form-group">
+						    <label for="text">Campaign Type</label>
+						    <select class="form-control bg-light" name="Campaign_type">
+						    	<option>New</option>
+						    	<option>Old Campaign</option>
+						    </select>
+						  </div>
+					</div>
+					<button type="submit" class="btn btn-main text-center m-auto mt-4">Search Campaign</button>
+				</div>	
+			</form>
+		    </div> 	   
+		  </div>
+		</div>	
+		  <div class="row mt-4">
+		  	<div class="col-lg-4" *ngFor="let c of campaigns">
+		  		<div class="card border-0 shadow-lg mb-3">
+			    <img class="img-fluid" src="assets/img/d/{{c.img}}" alt="image">
+			    <div class="card-body">
+			      <p class="card-title">{{c.title}}</p>
+			    </div>
+			    <div class="card-footer"><i class="icon-feather-edit text-primary mr-2 cursor" data-toggle="modal" data-target=".campaigns_edit"></i> <i class="icon-feather-trash-2 cursor text-primary"></i></div>
+			  </div>	
+		  	</div>
+		  </div>		
+	</div>
+</div>				
+
+<div class="modal fade campaigns_edit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content shadow-lg mb-3">
+       <div class="modal-body">
+     	<div class="">
+     		<div class="row ">
+     			<div class="col-lg-6">
+     				<h6>Edit Campaign</h6>
+     			</div>
+     			<div class="col-lg-6 text-lg-right">
+     				 <i class="icon-feather-save text-primary mr-2 cursor"></i> <i data-dismiss="modal" aria-label="Close" class="icon-feather-x cursor text-primary"></i>
+     			</div>
+     		</div>
+		    <div class="card-body">
+		      <img src="assets/img/d/1.png">
+		      <div>
+		      	<small class="font-weight-600">Title</small>
+		      <input type="text" class="form-control border-0" name="Title" value="Lorme ipsume clu skd fdkd">	
+		      </div>
+		      <div class="">
+		      	 <small class="font-weight-600">Body</small>
+		      <textarea rows="4" class="form-control border-0 text-left">
+		      	In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.
+		      </textarea>
+		      </div>
+		     	
+		    </div>
+		    <div class="card-footer bg-transparent"><a href="javascript:void(0)" data-dismiss="modal" aria-label="Close">Cancel</a></div>
+		  </div>
+    </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->

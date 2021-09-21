@@ -1,0 +1,170 @@
+<section class="admin-login-section guest-bg">
+    <div class="container py-5">
+        <div class="login-admin-container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4 class="login-color-gray">User Panel Login</h4>
+                    <p class="login-color-gray">Fill your details to get in</p>
+                </div>
+                <div class="col-lg-8">
+                    <div class="form-step-header">
+                        <div class="step" [class.active]="step == 1">
+                            <span class="step-circle">1</span>
+                            <span class="step-label">Basic Info</span>
+                        </div>
+                        <div class="line"></div>
+                        <div class="step" [class.active]="step == 2">
+                            <span class="step-circle">2</span>
+                            <span class="step-label">Personal Data</span>
+                        </div>
+                        <div class="line"></div>
+                        <div class="step" [class.active]="step == 3">
+                            <span class="step-circle">3</span>
+                            <span class="step-label">Contact Info</span>
+                        </div>
+                    </div>
+                    <form class="contact-form bg-white shadow rounded p-4" [formGroup]="registerForm">
+                        <div class="content" [hidden]="step != 1">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <input type="text" name="firstname" formControlName="firstname" class="form-control admin-login-textbox" [ngClass]="{ 'is-invalid': errStep1 && f.firstname.errors }" placeholder="First Name*" />
+                                    <div *ngIf="errStep1 && f.firstname.errors" class="invalid-feedback">
+                                        <div *ngIf="f.firstname.errors.required">Name is required</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" name="middlename" formControlName="middlename" [ngClass]="{ 'is-invalid': errStep1 && f.middlename.errors }" class="form-control admin-login-textbox" placeholder="Middle Name" />
+                                    <div *ngIf="errStep1 && f.middlename.errors" class="invalid-feedback">
+                                        <div *ngIf="f.middlename.errors.required">Middle is required</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" name="lastname" formControlName="lastname" class="form-control admin-login-textbox" [ngClass]="{ 'is-invalid': errStep1 && f.lastname.errors }" placeholder="Last Name*" />
+                                    <div *ngIf="errStep1 && f.lastname.errors" class="invalid-feedback">
+                                        <div *ngIf="f.lastname.errors.required"> Last Name is required</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="email" name="email" formControlName="email" [ngClass]="{ 'is-invalid': errStep1 && f.email.errors }" class="form-control admin-login-textbox" placeholder="Email*" />
+                                    <div *ngIf="errStep1 && f.email.errors" class="invalid-feedback">
+                                        <div *ngIf="f.email.errors.required">Email is required</div>
+                                        <div *ngIf="f.email.hasError('pattern') && !f.email.hasError('required')">Please enter a valid email.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button (click)="next()" class="btn admin-login-now-btn">Next</button>
+                        </div>
+                        <div class="content" [hidden]="step != 2">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <input type="password" formControlName="password" [ngClass]="{ 'is-invalid': errStep2 && f.password.errors }" class="form-control admin-login-textbox" placeholder="Password" />
+                                    <div *ngIf="errStep2 && f.password.errors" class="invalid-feedback">
+                                        <div *ngIf="f.password.errors.required">Password is required.</div>
+                                        <div *ngIf="f.password.errors.mustMatch">Passwords must match.</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="password" formControlName="confirmPassword" class="form-control admin-login-textbox" [ngClass]="{ 'is-invalid': errStep2 && f.confirmPassword.errors }" placeholder="Confirm Password"/>
+                                    <div *ngIf="errStep2 && f.confirmPassword.errors" class="invalid-feedback">
+                                        <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required.</div>
+                                        <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match.</div>
+                                    </div> 
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="tel" id="phone" (keypress)="numericOnly($event)" formControlName="phonenumber" [ngClass]="{ 'is-invalid': errStep2 && f.phonenumber.errors }" class="form-control admin-login-textbox" placeholder="Phone" />
+                                    <div *ngIf="errStep2 && f.phonenumber.errors" class="invalid-feedback">
+                                        <div *ngIf="f.phonenumber.errors.required">Phone is required.</div>
+                                        <div *ngIf="(f.phonenumber.hasError('maxlength') || f.phonenumber.hasError('minlength')) && !f.phonenumber.hasError('required')">Please enter a valid phone number.</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input class="form-control admin-login-textbox" [readonly]="true" formControlName="dob" ngbDatepicker #d="ngbDatepicker" [minDate]="mnDate" [maxDate]="mxDate" [ngClass]="{ 'is-invalid': errStep2 && f.dob.errors }" placeholder="DOB" />
+                                    <button class="btn btn-link calendar" (click)="d.toggle()" type="button"></button>
+                                    <div *ngIf="errStep2 && f.dob.errors" class="invalid-feedback">
+                                        <div *ngIf="f.dob.errors.required">Date of Birth is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="select-wrap">
+                                        <select formControlName="gender" class="form-control admin-login-textbox" [ngClass]="{ 'is-invalid': errStep2 && f.gender.errors }" placeholder="Gender">
+                                            <option value="">Gender</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                    <div *ngIf="errStep2 && f.gender.errors" class="invalid-feedback">
+                                        <div *ngIf="f.gender.errors.required">Gender is required.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <button class="btn admin-login-now-btn mr-3" (click)="previous()">Previous</button>
+                                <button class="btn admin-login-now-btn" (click)="next()">Next</button>
+                            </div>
+                        </div>
+                        <div class="content" [hidden]="step != 3">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <input type="text" formControlName="address1" [ngClass]="{ 'is-invalid': errStep3 && f.address1.errors }" class="form-control admin-login-textbox" placeholder="Address1" />
+                                    <div *ngIf="(errStep3 || f.address1.touched) && f.address1.errors" class="invalid-feedback">
+                                        <div *ngIf="f.address1.errors.required">Address1 is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" formControlName="address2" [ngClass]="{ 'is-invalid': errStep3 && f.address2.errors }" class="form-control admin-login-textbox" placeholder="Address2" />
+                                    <div *ngIf="(errStep3 || f.address2.touched) && f.address2.errors" class="invalid-feedback">
+                                        <div *ngIf="f.address2.errors.required">Address2 is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" formControlName="city" class="form-control admin-login-textbox" [ngClass]="{ 'is-invalid': errStep3 && f.city.errors }" placeholder="City" />
+                                    <div *ngIf="(errStep3 || f.city.touched) && f.city.errors" class="invalid-feedback">
+                                        <div *ngIf="f.city.errors.required">City is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" formControlName="state" class="form-control admin-login-textbox" [ngClass]="{ 'is-invalid': errStep3 && f.state.errors }" placeholder="State" />
+                                    <div *ngIf="(errStep3 || f.state.touched) && f.state.errors" class="invalid-feedback">
+                                        <div *ngIf="f.state.errors.required">State is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="select-wrap">
+                                        <select #cty (change)="countryChanged(cty.value)" class="form-control admin-login-textbox" formControlName="country" [ngClass]="{ 'is-invalid': errStep3 && f.country.errors }">
+                                            <option value="">Country</option>
+                                            <option *ngFor="let c of countries" [value]="c.name">{{ c.name }}</option>
+                                        </select>
+                                    </div>
+                                    <div *ngIf="(errStep3 || f.country.touched) && f.country.errors" class="invalid-feedback">
+                                        <div *ngIf="f.country.errors.required">Country Name is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input #zip type="text" name="postalcode" formControlName="postalcode" class="form-control admin-login-textbox" [ngClass]="{ 'is-invalid': errStep3 && f.postalcode.errors }" placeholder="Postal Code"/>
+                                    <div *ngIf="(errStep3 || f.postalcode.touched) && f.postalcode.errors" class="invalid-feedback">
+                                        <div *ngIf="f.postalcode.errors.required">Postal Code is required.</div>
+                                        <div *ngIf="f.postalcode.hasError('minlength') && !f.postalcode.hasError('required')">Postal Code must be minimum 5 digits long.</div>
+                                        <div *ngIf="f.postalcode.hasError('maxlength') && !f.postalcode.hasError('required')">Postal Code cannot be this long.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <button class="btn admin-login-now-btn mr-3" (click)="previous()">Previous</button>
+                                <button class="btn admin-login-now-btn" [disabled]="registerForm.invalid" (click)="register()">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-4">
+                    <div class="admin-login-account-section">
+                        <p class="login-color-gray">Have an account?</p>
+                        <a routerLink="/login" class="createaccountbtn mb-3">Login Account</a>
+                        <p class="login-color-gray">You can also Signup using</p>
+                        <a (click)="googleLogin()"> <img src="./assets/images/Admin-login/images.png" class="m-auto" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

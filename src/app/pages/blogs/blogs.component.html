@@ -1,0 +1,69 @@
+<section class="projects  pt-5 position-relative">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 d-none text-center mb-5">
+                <h1 class="raleway-font"><span class="text-primary_0">Projects</span></h1>
+            </div>
+        </div>
+        <form class="row" [formGroup]="caseForm">
+            <div class="col-sm-9">
+                <div class="input-group form-group has-search">
+                    <span class="fa fa-search form-control-feedback"></span>
+                    <input type="text" class="form-control" id="title" name="title" formControlName="title"
+                        placeholder="Search by name, cause" [(ngModel)]="caseFilter.title">
+                    <span class="input-group-append">
+                        <button class="btn btn-search-case" type="button" (click)="searchData()">
+                            Search
+                        </button>
+                    </span>
+
+                </div>
+                <div *ngIf="blogs?.length === 0">
+                    No matching Case
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <button class="btn btn-filter dropdown-toggle-0 dropdown-toggle" data-toggle="dropdown"
+                    type="button"><img class="filter-img" src="./assets/img/filter.png"> Filter</button>
+
+                <div class="dropdown-menu shadow border-0">
+                    <!-- <a class="dropdown-item" href="javascript:void(0)" (click)="getAllCases()">All Cases</a>
+                <a class="dropdown-item" href="javascript:void(0)" (click)="getUrgentCases()">Urgent</a>
+                <a class="dropdown-item" href="javascript:void(0)" (click)="getPopularCases()">Popularity</a>
+                <a class="dropdown-item" href="javascript:void(0)" (click)="recentCases()">Recent</a>
+                <a class="dropdown-item" href="javascript:void(0)" (click)="oldCases()">Older</a> -->
+                </div>
+            </div>
+        </form>
+
+        <div class="row case-slider_0 mt-5  slick-slide-100_0">
+            <div class="col-xl-4 col-lg-6" *ngFor="let blog of blogs">
+                <div class="case-item-p">
+                    <div class="img-warpper">
+                        <a routerLink="/blogs/{{blog?.slug}}">
+                            <img src="{{blog?.featuredimage}}" alt="Cases" class="img-fluid blr">
+                            <div class="overlay"></div>
+                        </a>
+                    </div>
+                    <div class="content-wrap">
+                        <h5 class=" title">
+                            {{blog?.title}}
+                        </h5>
+                         <p [innerHTML]="getDescriptionsData(blog?.description)"></p>
+                        <a routerLink="/blogs/{{blog?.slug}}" class="text-primary opacity-1  font-weight-bold">Read
+                            More</a>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="isloadMoreBtn" class="position-relative our-project-donate my-4 text-center ">
+                <button class="text-center font-weight-bold  d-block donate-button" (click)="loanextPageData()">Load
+                    More</button>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+<!--End Medical Cases-->
+<app-newsletter></app-newsletter>

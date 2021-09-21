@@ -1,0 +1,205 @@
+<div class="d-flex" style="background-color:#f1f5f8">
+<div class="col-lg-3 p-4">
+   <app-left-side></app-left-side>
+</div>
+<div class="col-lg-9 p-4">
+   <a href="javascript:void"><i class="icon-material-outline-arrow-left-alt text-primary mr-2 arrow-l  cursor" ></i> <i class="icon-material-outline-arrow-right-alt text-primary arrow-l mr-2 cursor" ></i></a>
+   <h4 class="text-primary mb-4">SEO Dashboard</h4>
+   <div class="row">
+      <div class="col-lg-3">
+         <div class="card border-0">
+            <div class="card-header bg-header text-white">Reach</div>
+            <div class="card-body">
+               <h6>Visits</h6>
+               <h5 class="font-weight-600">1875</h5>
+               <small>16% from previous 31 days</small>
+            </div>
+         </div>
+      </div>
+      <div class="col-lg-3">
+         <div class="card border-0">
+            <div class="card-header bg-header text-white">Interest</div>
+            <div class="card-body">
+               <h6>Visits</h6>
+               <h5>1875</h5>
+               <small>16% from previous 31 days</small>
+            </div>
+         </div>
+      </div>
+      <div class="col-lg-3">
+         <div class="card border-0">
+            <div class="card-header bg-header text-white">Engagement</div>
+            <div class="card-body">
+               <h6>Visits</h6>
+               <h5>1875</h5>
+               <small>16% from previous 31 days</small>
+            </div>
+         </div>
+      </div>
+      <div class="col-lg-3">
+         <div class="card border-0">
+            <div class="card-header bg-header text-white">Conversion</div>
+            <div class="card-body">
+               <h6>Visits</h6>
+               <h5>1875</h5>
+               <small>16% from previous 31 days</small>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="row mt-4">
+      <div class="col-lg-5">
+         <h4>Organic Traffic By device</h4>
+         <img src="assets/img/d/seo-img.png" class="img-fluid">
+      </div>
+      <div class="col-lg-7">
+         <h4>Top Landing Page</h4>
+         <table class="table">
+            <thead class="bg-header text-white">
+               <tr>
+                  <th>S.No.</th>
+                  <th>Page</th>
+                  <th>Page View</th>
+                  <th>Bounce Rate</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr *ngFor="let t of arrays.slice(0, 3); let i = index">
+                  <td>{{i+1}}.</td>
+                  <td>raahi.com</td>
+                  <td>96565{{i+1}}</td>
+                  <td>9{{i+1}}.32%</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </div>
+   <div class="row mt-4">
+      <div class="col-lg-5">
+         <h4>Top Queries</h4>
+         <table class="table">
+            <thead class="bg-header text-white">
+               <tr>
+                  <th>S.No.</th>
+                  <th>Query</th>
+                  <th>Impressions</th>
+                  <th>Site CTR</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr *ngFor="let t of arrays.slice(0, 4); let i = index">
+                  <td>{{i+1}}.</td>
+                  <td>Interaction</td>
+                  <td>25{{i+1}}</td>
+                  <td>2{{i+1}}.32%</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <div class="col-lg-4">
+         <h4>Site Traffic by source</h4>
+         <canvas baseChart
+          [data]="pieChartData"
+          [labels]="pieChartLabels"
+          [chartType]="pieChartType"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
+      </div>
+      <div class="col-lg-3">
+         <h4>Site Speed</h4>
+         <div class="shadow-lg p-2 bg-white">
+            <small>Avg. Page Load Time(Sec.)</small>
+            <h5>2.6</h5>
+            <h4 class="text-primary">51.1</h4>
+         </div>
+      </div>
+   </div>
+   <div class="row mt-5">
+      <div class="col-lg-6 text-left">
+         <h5>Active Campaigns</h5>
+      </div>
+      <div class="col-lg-6 text-lg-right">
+         <a href="javascript:void(0)" class="text-primary text-underline">+ Add New Campaigns</a>
+      </div>
+      <div class="col-lg-12">
+         <table class="table table-striped">
+            <thead class="bg-header_t text-primary">
+               <tr>
+                  <th>S.No</th>
+                  <th>Campaign Name</th>
+                  <th>Campaign Type</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Status</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr *ngFor="let t of tables; let i = index">
+                  <td>{{i+1}}</td>
+                  <td>{{t.c_name}}</td>
+                  <td>{{t.c_type}}</td>
+                  <td>{{t.s_date}}</td>
+                  <td>{{t.e_date}}</td>
+                  <td><i class="icon-feather-edit text-primary mr-2 cursor" ></i> <i class="icon-feather-trash-2 cursor text-primary"></i></td>
+               </tr>
+            </tbody>
+         </table>
+         <nav aria-label="Page navigation example text-lg-right">
+            <ul class="pagination">
+               <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+               <li class="page-item"><a class="page-link" href="#">1</a></li>
+               <li class="page-item"><a class="page-link" href="#">2</a></li>
+               <li class="page-item"><a class="page-link" href="#">3</a></li>
+               <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+         </nav>
+      </div>
+   </div>
+   <div class="row mt-3">
+      <div class="col-lg-7">
+         <div class="card border-0 bg-white mb-3" *ngFor="let t of arrays.slice(0, 2)">
+            <div class="row align-items-center">
+               <div class="col-lg-5">
+                  <img src="assets/img/d/s-1.png" class="img-fluid0">
+               </div>
+               <div class="col-lg-7">
+                  <h4>Unlimited Possibilites</h4>
+                  <p>posted by <a href="#" class="text-primary">Admin</a> on <span class="text-primary">August 25, 2021</span></p>
+                  <button class="btn px-2 bg-header text-white mr-2">Edit</button> 
+                  <button class="btn px-2 bg-header text-white mr-2">Delete</button>
+                  <button class="btn px-2 bg-header text-white mr-2">Publish</button> 
+                  <button class="btn px-2 bg-header text-white">Cancel</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="col-lg-5">
+         <img src="assets/img/d/s-3.png" class="img-fluid">
+      </div>
+   </div>
+   <div class="row mt-3">
+      <div class="col-lg-12">
+         <div class="card border-0 bg-white mb-3" *ngFor="let t of arrays.slice(0, 2)">
+            <div class="row align-items-center">
+               <div class="col-lg-5">
+                  <img src="assets/img/d/s-2.png" class="img-fluid0">
+               </div>
+               <div class="col-lg-7">
+                  <h4>Unlimited Possibilites</h4>
+                  <p>posted by <a href="#" class="text-primary">Admin</a> on <span class="text-primary">August 25, 2021</span></p>
+                  <button class="btn px-2 bg-header text-white mr-2">Edit</button> 
+                  <button class="btn px-2 bg-header text-white mr-2">Delete</button>
+                  <button class="btn px-2 bg-header text-white mr-2">Publish</button> 
+                  <button class="btn px-2 bg-header text-white">Cancel</button>
+               </div>
+            </div>
+            <div class="position-abs">
+               <div class="date_text">
+                  25<br>
+                  Aug
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

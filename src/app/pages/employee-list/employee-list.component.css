@@ -1,0 +1,86 @@
+.bg-header_t{
+	background: #ffd6de;
+}
+.bg-header{
+	background: #a42a6a;
+}
+.arrow-l {
+    font-size: 25px;
+    display: block;
+    text-align: right;
+}
+.btn-main{
+    border-radius: 40px; 
+    background: #a42a6a; 
+    color: #fff;
+    margin-top: 30px;
+    padding: 10px 40px;
+}
+.form-control{
+    border: 0;
+}
+table td {
+    font-size: 14px;
+}
+
+.custom-switch.custom-switch-lg {
+    padding-bottom: 1rem;
+	padding-left: 2.25rem;
+}
+
+.custom-switch.custom-switch-lg .custom-control-label {
+    padding-left: 1.25rem;
+    padding-top: 0.5rem;
+}
+
+.custom-switch.custom-switch-lg .custom-control-label::before {
+    border-radius: 1rem;
+    height: 1.5rem;
+    width: 2.5rem;
+}
+
+.custom-switch.custom-switch-lg .custom-control-label::after {
+    border-radius: .65rem;
+    height: calc(1.5rem - 4px);
+    width: calc(1.5rem - 4px);
+}
+	
+.custom-switch.custom-switch-lg .custom-control-input:checked ~ .custom-control-label::after{
+    transform: translateX(1rem);
+}
+
+.custom-switch.custom-switch-xl {
+    padding-bottom: 1rem;
+	padding-left: 2.25rem;
+}
+
+.custom-switch.custom-switch-xl .custom-control-label {
+    padding-left: 2rem;
+    padding-top: 0.5rem;
+}
+  
+.custom-switch.custom-switch-xl .custom-control-label::before {
+    border-radius: 1rem;
+    height: 2rem;
+    width: 3.5rem;
+}
+
+.custom-switch.custom-switch-xl .custom-control-label::after {
+    border-radius: 2rem;
+    height: calc(2rem - 4px);
+    width: calc(2rem - 4px);
+}
+
+.custom-switch.custom-switch-xl .custom-control-input:checked ~ .custom-control-label::after {
+    transform: translateX(1.5rem);
+}
+
+.reload-action {
+    cursor: pointer;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.filter-section {
+    margin-bottom: 10px;
+}

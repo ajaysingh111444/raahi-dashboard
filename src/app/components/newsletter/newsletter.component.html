@@ -1,0 +1,27 @@
+<section class="newsletter footer">
+<div class="container">
+<div class="row">
+<div class="col-sm-12">
+  <div class="content">
+    <h1>Newsletter</h1>
+    <p>Signup for our monthly newsletter to get the latest news</p>
+  <form  name="newsletterForm" [formGroup]="newsletterForm"   method="post" role="form" (ngSubmit)="onSubmitNewsletterForm()">
+  <div>{{response}}</div>
+  <div class="input-group">
+    <input type="email"    name="email" id="email"  formControlName="email"  [(ngModel)]="data.email" class="form-control" placeholder="Enter Your Email" [ngClass]="{ 'is-invalid': f.email.touched && f.email.errors }" required>
+      <span class="input-group-btn">
+      <button class="btn cursor" type="submit" [disabled]="newsletterForm.invalid">
+        Subscribe
+      </button>
+  </span>
+  <div *ngIf="f.email.touched && f.email.errors" class="text-left invalid-feedback">
+          <div *ngIf="f.email.errors.required">Email Name is required</div>
+          <div *ngIf="f.email.errors.pattern">Email must be a valid email address (eg:abc@gmail.com)</div>
+    </div>
+ </div>
+ </form>
+  </div>
+</div>
+</div>
+</div>
+</section>

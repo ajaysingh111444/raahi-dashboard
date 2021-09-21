@@ -27,7 +27,19 @@
         background: #fff;
         padding: 10px 0px;
     }
-    .login-admin-container{background: #fff; padding: 20px;}
+    .login-admin-container{
+        background: rgb(83 94 121 / 79%);
+         padding: 40px;
+         border-radius: 40px;
+    }
     .invalid-feedback {
         display: block;
     }
+    form i.icon-set {
+    position: absolute;
+    top: 6px;
+    left: 20px;
+    color: blue;
+    font-size: 22px;
+    z-index: 9999;
+}

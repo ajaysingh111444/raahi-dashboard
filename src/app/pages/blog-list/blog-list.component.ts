@@ -250,4 +250,41 @@ export class BlogListComponent implements OnInit {
             this.errStep2 = true // display step 2 errors
         }
     }
+
+    confirmDel(ref, blog) {
+        this.temp = blog;
+        this.modalService.open(ref, {ariaLabelledBy: 'modal-basic-title-add'});
+    }
+
+    delBlog(ref) {
+        this.config.showLoading();
+        this.temp.status = 'deleted';
+
+        let bl = {
+            "bid": this.temp.bid,
+            "categoryid": this.temp.categoryid,
+            "title": this.temp.title,
+            "featuredimage": this.temp.featuredimage || "",
+            "youtubeurl": this.temp.youtubeurl || "",
+            "description": this.temp.description || "",
+            "metatile": this.temp.metatile || "",
+            "metakeywords": this.temp.metakeywords || "",
+            "metadescription": this.temp.metadescription || "",
+            "status": 'deleted',
+        }
+
+        // Call blog update method here
+        this.auth.updateBlog(bl).then(
+            (res: any) => {
+                console.log(res);
+                ref.close();
+                this.config.dismissLoading();
+            },
+            (err: any) => {
+                console.log(err);
+                this.config.dismissLoading();
+                this.toastr.error(err.title, err.detail);
+            }
+        );
+    }
 }

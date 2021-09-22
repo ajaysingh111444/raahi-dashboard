@@ -11,25 +11,8 @@ import { AppComponent } from "./app.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { CommonModule, DatePipe, DecimalPipe } from "@angular/common";
-import { ContactUsComponent } from "./pages/contact-us/contact-us.component";
-import { AboutCureComponent } from "./pages/about-cure/about-cure.component";
-import { WhatWeDoComponent } from "./pages/what-we-do/what-we-do.component";
-import { OurAccountabilityComponent } from "./pages/our-accountability/our-accountability.component";
-import { WhyCureComponent } from "./pages/why-cure/why-cure.component";
-import { TeamCureComponent } from "./pages/team-cure/team-cure.component";
-import { CareerComponent } from "./pages/career/career.component";
-import { PrivacyPolicyComponent } from "./pages/privacy-policy/privacy-policy.component";
-import { TermOfUseComponent } from "./pages/term-of-use/term-of-use.component";
-import { NewsletterComponent } from "./components/newsletter/newsletter.component";
-import { CasesSliderComponent } from "./components/cases-slider/cases-slider.component";
-import { SiteMapComponent } from "./pages/site-map/site-map.component";
 import { SlickCarouselModule } from "ngx-slick-carousel";
 import { FilterPipeModule } from "ngx-filter-pipe";
-import { OurProcessComponent } from "./pages/our-process/our-process.component";
-import { DonateFormComponent } from "./components/donate-form/donate-form.component";
-import { RefersComponent } from "./components/refers/refers.component";
-import { NewsComponent } from "./components/news/news.component";
-import { EventsComponent } from "./components/events/events.component";
 import { AutoCompleteInputDirective } from "./directives/AutoCompleteInputDirective";
 import { ForgetpasswordComponent } from "./pages/forgetpassword/forgetpassword.component";
 import { LoginComponent } from "./pages/login/login.component";
@@ -69,83 +52,67 @@ import { ChartsModule } from "ng2-charts";
 
 import { SortableHeaderDirective } from "./directives/sortable.directive";
 import { TableService } from "./services/table.service";
+import { FileUpload } from "./components/file-upload/file-upload.component";
 
 @NgModule({
-    declarations: [
-        ForgetpasswordComponent,
-        LoginComponent,
-        AppComponent,
-        RecreatepasswardComponent,
-        RegisterComponent,
-        // HomeComponent,
-        HeaderComponent,
-        FooterComponent,
-        ContactUsComponent,
-        AboutCureComponent,
-        WhatWeDoComponent,
-        OurAccountabilityComponent,
-        WhyCureComponent,
-        TeamCureComponent,
-        CareerComponent,
-        PrivacyPolicyComponent,
-        TermOfUseComponent,
-        NewsletterComponent,
-        CasesSliderComponent,
-        SiteMapComponent,
-        OurProcessComponent,
-        DonateFormComponent,
-        RefersComponent,
-        NewsComponent,
-        EventsComponent,
-        AutoCompleteInputDirective,
-        DashboardComponent,
-        BlogsComponent,
-        StoriesComponent,
-        BlogDetailsComponent,
-        StoryDetailsComponent,
-        CompaignComponent,
-        LeftSideComponent,
-        RelatedBlogsComponent,
-        ProfileComponent,
-        ResetPasswordComponent,
-        CampaignListComponent,
-        RelatedStoriesComponent,
-        CampaignDashboadComponent,
-        SocialshareComponent,
-        RaahiSeoComponent,
-        BlogListComponent,
-        DonorListComponent,
-        UserListComponent,
-        VolunteerListComponent,
-        AddBlogComponent,
-        AddUserComponent,
-        EmployeeListComponent,
-        EmployeeProfileComponent,
-        StoryListComponent,
-        SortableHeaderDirective,
-    ],
-    imports: [
-        BrowserModule.withServerTransition({ appId: "serverApp" }),
-        AppRoutingModule,
-        FormsModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        CommonModule,
-        NgxCaptchaModule,
-        SlickCarouselModule,
-        FilterPipeModule,
-        AngularEditorModule,
-        ChartsModule,
-        BrowserAnimationsModule, // required animations module
-        ToastrModule.forRoot({
-            timeOut: 8000,
-            positionClass: "toast-top-center",
-            preventDuplicates: true,
-        }), // ToastrModule added
-        NgbModule,
-    ],
-    providers: [Config, AppAuth, AppHttp, TableService, DecimalPipe, DatePipe, Meta],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    bootstrap: [AppComponent],
+  declarations: [
+    ForgetpasswordComponent,
+    LoginComponent,
+    AppComponent,
+    RecreatepasswardComponent,
+    RegisterComponent,
+    HeaderComponent,
+    FooterComponent,
+    FileUpload,
+    AutoCompleteInputDirective,
+    DashboardComponent,
+    BlogsComponent,
+    StoriesComponent,
+    BlogDetailsComponent,
+    StoryDetailsComponent,
+    CompaignComponent,
+    LeftSideComponent,
+    RelatedBlogsComponent,
+    ProfileComponent,
+    ResetPasswordComponent,
+    CampaignListComponent,
+    RelatedStoriesComponent,
+    CampaignDashboadComponent,
+    SocialshareComponent,
+    RaahiSeoComponent,
+    BlogListComponent,
+    DonorListComponent,
+    UserListComponent,
+    VolunteerListComponent,
+    AddBlogComponent,
+    AddUserComponent,
+    EmployeeListComponent,
+    EmployeeProfileComponent,
+    StoryListComponent,
+    SortableHeaderDirective,
+  ],
+  imports: [
+    BrowserModule.withServerTransition({ appId: "serverApp" }),
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    CommonModule,
+    NgxCaptchaModule,
+    SlickCarouselModule,
+    FilterPipeModule,
+    AngularEditorModule,
+    ChartsModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot({
+      timeOut: 8000,
+      positionClass: "toast-top-center",
+      preventDuplicates: true,
+    }), // ToastrModule added
+    NgbModule,
+  ],
+  providers: [Config, AppAuth, AppHttp, TableService, DecimalPipe, DatePipe, Meta],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

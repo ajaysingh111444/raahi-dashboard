@@ -7,6 +7,7 @@ import { DOCUMENT } from "@angular/common";
     styleUrls: ["./footer.component.css"],
 })
 export class FooterComponent implements OnInit {
+    
     constructor(@Inject(DOCUMENT) private dom: Document) {}
     ngOnInit() {}
   

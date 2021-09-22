@@ -8,7 +8,7 @@
             <h5>Employees</h5>
          </div>
          <div class="col-lg-6 text-lg-right">
-            <a href="javascript:void(0)" (click)="showAddModal(content)" class="text-primary text-underline">+ Add New EMP</a>
+            <a (click)="showAddModal(content)" class="text-primary text-underline">+ Add New EMP</a>
          </div>
          <div class="col-lg-12 text-lg-right filter-section">
             <input class="filter-input" name="searchTerm" [(ngModel)]="tableService.searchTerm" placeholder="Search..." />

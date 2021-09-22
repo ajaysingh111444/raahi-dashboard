@@ -31,6 +31,9 @@ button.btn-close {
   
 }
 
+img.img-fluid.max-width-logo {
+    width: 150px;
+}
 
 .border-none{border:none; border-radius: 20%;}
 .know-details{font-size: 16px; line-height: 2.5; margin:0 auto;}
@@ -49,3 +52,15 @@ button.btn-close {
     color: #721c24;
     
 }
+.header-section {
+    background: #f1f5f8;
+}
+img.profile-img {
+    width: 60px;
+    border-radius: 50%;
+}
+.dropdown-toggle::after {
+    border-right: 0;
+    border-left: 0;
+}
+.d-inline-grid{display: inline-grid;}

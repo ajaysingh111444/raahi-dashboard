@@ -287,4 +287,12 @@ export class BlogListComponent implements OnInit {
             }
         );
     }
+
+    handleInputChange(f) {
+        console.log(f);
+        
+        if(f.base64url) {
+            this.temp.featuredimage = f.base64url;
+        }
+    }
 }

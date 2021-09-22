@@ -53,6 +53,7 @@ import { ChartsModule } from "ng2-charts";
 
 import { SortableHeaderDirective } from "./directives/sortable.directive";
 import { TableService } from "./services/table.service";
+import { FileUpload } from "./components/file-upload/file-upload.component";
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { TableService } from "./services/table.service";
     // HomeComponent,
     HeaderComponent,
     FooterComponent,
+    FileUpload,
     SiteMapComponent,
     AutoCompleteInputDirective,
     DashboardComponent,

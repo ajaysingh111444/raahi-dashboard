@@ -1,0 +1,6 @@
+<label for="text"> {{ label }}</label>
+<input #imgUpload type="file" [accept]="requiredFileType" hidden (change)="handleInputChange($event)"/>
+<div class="img-upload-wrappper" (click)="imgUpload.click()">
+    <img [src]="fileSrc"/>
+    <i [hidden]="fileSrc" [ngClass]="requiredFileType.includes('image/*') ? 'icon-feather-image' : 'icon-feather-file'"></i>
+</div>

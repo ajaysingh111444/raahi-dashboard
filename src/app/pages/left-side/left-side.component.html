@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row user-wrapper">
 	<div class="col-lg-6 m-auto">
 		<img src="assets/img/male-placeholder.jpeg" class="img-fluid rounded-xl">
 	</div>
@@ -8,7 +8,7 @@
 		<p class="mt-3">{{auth.currentUser?.designation}}</p>
 	</div>
 </div>
-<ul class="list-inline   px-4">
+<ul class="list-inline px-4">
 	<li class="my-3" *ngIf="(auth.currentUser?.roles[0] ==  'admin') || (auth.currentUser?.roles[0] == 'superadmin')">
 	   <a routerLink="/dashboard" class="text-dark" >
 	   	<i class="icon-material-outline-dashboard mr-3 left-side py-3"></i>

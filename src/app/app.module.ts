@@ -11,7 +11,6 @@ import { AppComponent } from "./app.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { CommonModule, DatePipe, DecimalPipe } from "@angular/common";
-import { SiteMapComponent } from "./pages/site-map/site-map.component";
 import { SlickCarouselModule } from "ngx-slick-carousel";
 import { FilterPipeModule } from "ngx-filter-pipe";
 import { AutoCompleteInputDirective } from "./directives/AutoCompleteInputDirective";
@@ -53,6 +52,7 @@ import { ChartsModule } from "ng2-charts";
 
 import { SortableHeaderDirective } from "./directives/sortable.directive";
 import { TableService } from "./services/table.service";
+import { FileUpload } from "./components/file-upload/file-upload.component";
 
 @NgModule({
   declarations: [
@@ -61,10 +61,9 @@ import { TableService } from "./services/table.service";
     AppComponent,
     RecreatepasswardComponent,
     RegisterComponent,
-    // HomeComponent,
     HeaderComponent,
     FooterComponent,
-    SiteMapComponent,
+    FileUpload,
     AutoCompleteInputDirective,
     DashboardComponent,
     BlogsComponent,

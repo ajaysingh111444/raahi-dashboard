@@ -11,7 +11,6 @@ import { AppComponent } from "./app.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { CommonModule, DatePipe, DecimalPipe } from "@angular/common";
-import { SiteMapComponent } from "./pages/site-map/site-map.component";
 import { SlickCarouselModule } from "ngx-slick-carousel";
 import { FilterPipeModule } from "ngx-filter-pipe";
 import { AutoCompleteInputDirective } from "./directives/AutoCompleteInputDirective";
@@ -61,10 +60,8 @@ import { TableService } from "./services/table.service";
     AppComponent,
     RecreatepasswardComponent,
     RegisterComponent,
-    // HomeComponent,
     HeaderComponent,
     FooterComponent,
-    SiteMapComponent,
     AutoCompleteInputDirective,
     DashboardComponent,
     BlogsComponent,

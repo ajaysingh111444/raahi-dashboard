@@ -53,7 +53,6 @@
               "src/assets/js/jquery.counterup.min.js",
               "src/assets/js/slick.min.js",
               "src/assets/js/slick-animation.js",
-              "src/assets/js/intlTelInput.js"
             ],
             "vendorChunk": true,
             "extractLicenses": false,

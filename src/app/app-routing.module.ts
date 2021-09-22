@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes, PreloadAllModules } from "@angular/router";
-import { SiteMapComponent } from "./pages/site-map/site-map.component";
 import { ForgetpasswordComponent } from "./pages/forgetpassword/forgetpassword.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { RecreatepasswardComponent } from "./pages/recreatepassward/recreatepassward.component";
@@ -29,46 +28,6 @@ import { EmployeeListComponent } from './pages/employee-list/employee-list.compo
 import { EmployeeProfileComponent } from './pages/employee-profile/employee-profile.component';
 import { StoryListComponent } from './pages/story-list/story-list.component';
 const routes: Routes = [
-  {
-    path: "",
-    pathMatch: "prefix",
-    loadChildren: () => import("./pages/home/home.module").then((m) => m.HomeModule),
-    data: {
-      seo: {
-        title: "RAAHI - Providing medical access to the poor",
-        metaTags: [
-          {
-            name: "description",
-            content:
-              "An initiative taken by the Humanity Welfare Council where we aim to transform the health care sector globally by providing necessary funds to people in urgent need of medical assistance",
-          },
-          {
-            name: "keywords",
-            content:
-              "free medical aid, free medical aid near me, gift donations, volunteer hospital near me, gift donations, health volunteer opportunities, sponsor medical treatment for poor, sponsor medical treatment for poor in india, RAAHI",
-          },
-          { property: "og:title", content: "RAAHI - Providing medical access to the poor" },
-          {
-            proprety: "og:description",
-            content:
-              "An initiative taken by the Humanity Welfare Council where we aim to transform the health care sector globally by providing necessary funds to people in urgent need of medical assistance",
-          },
-          { property: "og:image", content: environment.PgcUrl + "assets/img/og.jpg" },
-          { property: "og:url", content: environment.PgcUrl + "" },
-          { property: "fb:pages", content: "112162960243834" },
-          { name: "twitter:card", content: "summary_large_image" },
-          {
-            name: "twitter:description",
-            content:
-              "An initiative taken by the Humanity Welfare Council where we aim to transform the health care sector globally by providing necessary funds to people in urgent need of medical assistance",
-          },
-          { name: "twitter:image:src", content: environment.PgcUrl + "assets/img/og.jpg" },
-          { name: "twitter:title", content: "RAAHI - Providing medical access to the poor" },
-        ],
-      },
-    },
-  },
-
   {
     path: "blogs",
     component: BlogsComponent,
@@ -217,33 +176,6 @@ const routes: Routes = [
       },
     },
   },
-
-
-
-  {
-    path: "site-map",
-    component: SiteMapComponent,
-    data: {
-      seo: {
-        title: "RAAHI | SiteMap",
-        metaTags: [
-          { name: "description", content: "" },
-          { property: "og:title", content: "RAAHI | SiteMap" },
-          { property: "og:site_name", content: environment.PgcUrl + "site-map" },
-          { property: "og:type", content: "article" },
-          { property: "fb:pages", content: "112162960243834" },
-          { proprety: "og:description", content: "" },
-          { property: "og:image", content: environment.PgcUrl + "assets/img/og.jpg" },
-          { property: "og:url", content: environment.PgcUrl + "site-map" },
-          { name: "twitter:card", content: "summary_large_image" },
-          { name: "twitter:description", content: "" },
-          { name: "twitter:image:src", content: environment.PgcUrl + "assets/img/og.jpg" },
-          { name: "twitter:title", content: "RAAHI | SiteMap" },
-        ],
-      },
-    },
-  },
-
   {
     path: "recreatepassward",
     component: RecreatepasswardComponent,
@@ -331,6 +263,7 @@ const routes: Routes = [
   },
   {
     path: "login",
+    pathMatch: "prefix",
     component: LoginComponent,
     canActivate: [AutoLoginGuard],
     data: {
@@ -390,6 +323,7 @@ const routes: Routes = [
   {
     path: "compaign",
     component: CompaignComponent,
+    canActivate: [AuthGuard],
     data: {
       seo: {
         title: "RAAHI | compaign",
@@ -485,7 +419,7 @@ const routes: Routes = [
     component: EmployeeProfileComponent,
     canActivate: [AuthGuard],
   },
-  { path: "**", redirectTo: "/", pathMatch: "full" },
+  { path: "**", redirectTo: "/login", pathMatch: "full" },
 ];
 
 @NgModule({

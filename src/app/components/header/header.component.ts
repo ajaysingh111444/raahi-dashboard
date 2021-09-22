@@ -10,16 +10,11 @@ import { AppAuth } from "../../services/app-auth.service";
     styleUrls: ["./header.component.css"],
 })
 export class HeaderComponent implements OnInit {
-    display: boolean = false;
-    
     constructor(public router: Router, @Inject(DOCUMENT) private dom: Document, public auth: AppAuth,
-        @Inject(PLATFORM_ID) private platformId: Object, public events: Events) {
+         public events: Events) {
     }
 
     ngOnInit() {
-        if (isPlatformBrowser(this.platformId)) {
-            this.display = true;
-        }
     }
 
     openNav() {

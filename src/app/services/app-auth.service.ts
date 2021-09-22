@@ -667,4 +667,46 @@ export class AppAuth {
             );
         });
     }
+
+    /**
+     * Upload media for blog
+     * @param bid blog ID
+     * @param filename name of the file
+     * @param base64code file in base64 format
+     * @returns 
+     */
+     public uploadMedia(bid, filename, base64code) {
+        return new Promise((resolve, reject) => {
+            let url = `${this.config.baseUri}/blogs/media/v1`;
+            let param = {
+                "bid": bid,
+                "filename": filename,
+                "base64code": base64code
+            }
+
+            this.http.sendRequest("POST", url, param).then(
+                (data) => {
+                    if (data.status == 401) {
+                        this.triggerAuthFail();
+                    }
+                    else {
+                        let res = this.parseJson(data.response);
+
+                        if (res.data && res.data[0] && res.data[0].attributes) {
+                            resolve(res.data[0].attributes);
+                        }
+                        else {
+                            console.log("error", res);
+                            let errObj = this.commonErrorHandler(res);
+                            reject(errObj);
+                        }
+                    }
+                },
+                (err) => {
+                    console.log(err);
+                    reject(this.commonErrorHandler(err));
+                }
+            );
+        });
+    }
 }

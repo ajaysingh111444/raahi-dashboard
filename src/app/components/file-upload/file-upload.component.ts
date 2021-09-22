@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { Component, Input, Output, EventEmitter, OnInit } from "@angular/core";
 import { Config } from "src/app/services/config";
 
 @Component({
@@ -6,15 +6,22 @@ import { Config } from "src/app/services/config";
     templateUrl: "./file-upload.component.html",
     styleUrls: ["./file-upload.component.css"],
 })
-export class FileUpload {
+export class FileUpload implements OnInit{
     
     @Input() requiredFileType: string;
     @Input() label: string;
+    @Input() placeholderImg: string;
     @Output() fileSelected = new EventEmitter();
     
     fileSrc: string | ArrayBuffer;
     
     constructor(public config: Config) {
+    }
+
+    ngOnInit() {
+        if(this.placeholderImg && this.placeholderImg.length > 0) {
+            this.fileSrc = this.placeholderImg;
+        }
     }
 
     handleInputChange(e) {

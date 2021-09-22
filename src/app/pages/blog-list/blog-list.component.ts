@@ -179,6 +179,7 @@ export class BlogListComponent implements OnInit {
         this.step = 1;
         this.action = "Add";
         this.blogForm.reset();
+        this.temp = null;
 
         this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title-add'});
     }
@@ -290,9 +291,28 @@ export class BlogListComponent implements OnInit {
 
     handleInputChange(f) {
         console.log(f);
+        this.config.showLoading();
         
-        if(f.base64url) {
-            this.temp.featuredimage = f.base64url;
+        if(f.base64url && f.base64url.length > 0) {
+            let sub = 'data:'+f.type+';base64,';
+            let url = f.base64url.replace(sub, '');
+
+            this.auth.uploadMedia(this.temp.bid, f.name, url).then(
+                (res: any) => {
+                    console.log(res);
+                    
+                    if(res && res.url && res.url.length > 0) {
+                        this.temp.featuredimage = res.url;
+                    }
+                    
+                    this.config.dismissLoading();
+                },
+                (err: any) => {
+                    console.log(err);
+                    this.config.dismissLoading();
+                    this.toastr.error(err.title, err.detail);
+                }
+            );
         }
     }
 }

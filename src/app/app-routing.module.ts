@@ -28,46 +28,52 @@ import { AddUserComponent } from './pages/add-user/add-user.component';
 import { EmployeeListComponent } from './pages/employee-list/employee-list.component';
 import { EmployeeProfileComponent } from './pages/employee-profile/employee-profile.component';
 import { StoryListComponent } from './pages/story-list/story-list.component';
+
 const routes: Routes = [
   {
-    path: "",
-    pathMatch: "prefix",
-    loadChildren: () => import("./pages/home/home.module").then((m) => m.HomeModule),
-    data: {
-      seo: {
-        title: "RAAHI - Providing medical access to the poor",
-        metaTags: [
-          {
-            name: "description",
-            content:
-              "An initiative taken by the Humanity Welfare Council where we aim to transform the health care sector globally by providing necessary funds to people in urgent need of medical assistance",
-          },
-          {
-            name: "keywords",
-            content:
-              "free medical aid, free medical aid near me, gift donations, volunteer hospital near me, gift donations, health volunteer opportunities, sponsor medical treatment for poor, sponsor medical treatment for poor in india, RAAHI",
-          },
-          { property: "og:title", content: "RAAHI - Providing medical access to the poor" },
-          {
-            proprety: "og:description",
-            content:
-              "An initiative taken by the Humanity Welfare Council where we aim to transform the health care sector globally by providing necessary funds to people in urgent need of medical assistance",
-          },
-          { property: "og:image", content: environment.PgcUrl + "assets/img/og.jpg" },
-          { property: "og:url", content: environment.PgcUrl + "" },
-          { property: "fb:pages", content: "112162960243834" },
-          { name: "twitter:card", content: "summary_large_image" },
-          {
-            name: "twitter:description",
-            content:
-              "An initiative taken by the Humanity Welfare Council where we aim to transform the health care sector globally by providing necessary funds to people in urgent need of medical assistance",
-          },
-          { name: "twitter:image:src", content: environment.PgcUrl + "assets/img/og.jpg" },
-          { name: "twitter:title", content: "RAAHI - Providing medical access to the poor" },
-        ],
-      },
-    },
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
   },
+  // {
+  //   path: "",
+  //   pathMatch: "prefix",
+  //   loadChildren: () => import("./pages/home/home.module").then((m) => m.HomeModule),
+  //   data: {
+  //     seo: {
+  //       title: "RAAHI - Providing medical access to the poor",
+  //       metaTags: [
+  //         {
+  //           name: "description",
+  //           content:
+  //             "An initiative taken by the Humanity Welfare Council where we aim to transform the health care sector globally by providing necessary funds to people in urgent need of medical assistance",
+  //         },
+  //         {
+  //           name: "keywords",
+  //           content:
+  //             "free medical aid, free medical aid near me, gift donations, volunteer hospital near me, gift donations, health volunteer opportunities, sponsor medical treatment for poor, sponsor medical treatment for poor in india, RAAHI",
+  //         },
+  //         { property: "og:title", content: "RAAHI - Providing medical access to the poor" },
+  //         {
+  //           proprety: "og:description",
+  //           content:
+  //             "An initiative taken by the Humanity Welfare Council where we aim to transform the health care sector globally by providing necessary funds to people in urgent need of medical assistance",
+  //         },
+  //         { property: "og:image", content: environment.PgcUrl + "assets/img/og.jpg" },
+  //         { property: "og:url", content: environment.PgcUrl + "" },
+  //         { property: "fb:pages", content: "112162960243834" },
+  //         { name: "twitter:card", content: "summary_large_image" },
+  //         {
+  //           name: "twitter:description",
+  //           content:
+  //             "An initiative taken by the Humanity Welfare Council where we aim to transform the health care sector globally by providing necessary funds to people in urgent need of medical assistance",
+  //         },
+  //         { name: "twitter:image:src", content: environment.PgcUrl + "assets/img/og.jpg" },
+  //         { name: "twitter:title", content: "RAAHI - Providing medical access to the poor" },
+  //       ],
+  //     },
+  //   },
+  // },
 
   {
     path: "blogs",

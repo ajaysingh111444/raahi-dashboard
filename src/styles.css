@@ -76,3 +76,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .cursor{
 	cursor: pointer;
 }
+
+/* Start: Bootstrap overriding colors to match our color scheme */
+.page-item.active .page-link {
+  color: #fff !important;
+  background-color: #632494 !important;
+  border-color: #632494 !important;
+}
+.page-link {
+  color: #632494 !important;
+}
+/* End: Bootstrap overriding colors to match our color scheme */

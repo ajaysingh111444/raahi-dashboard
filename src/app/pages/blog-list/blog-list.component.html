@@ -1,151 +1,94 @@
 <div class="d-flex" style="background-color:#f1f5f8">
-   <div class="col-lg-3 p-4">
-      <app-left-side></app-left-side>
-   </div>
-   <div class="col-lg-9 p-4">
-      <div class="row">
-         <div class="col-lg-6 text-left">
-            <h5>Active Blogs</h5>
-         </div>
-         <div class="col-lg-6 text-lg-right">
-            <a href="javascript:void(0)"  data-toggle="modal" data-target=".blog_add" class="text-primary text-underline">+ Add New Blog</a>
-         </div>
-         <div class="col-lg-12">
-            <table class="table table-striped">
-               <thead class="bg-header_t text-primary">
-                  <tr>
-                     <th>S.No</th>
-                     <th>Title</th>
-                     <th>Actions</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <tr *ngFor="let b of blogs.list; let i = index">
-                     <td> {{ i+1 }} </td>
-                     <td> {{ b.title }} </td>
-                     <td>
-                        <i class="icon-feather-edit text-primary mr-2 cursor" data-toggle="modal" data-target=".blog_edit"></i>
-                        <i class="icon-feather-trash-2 cursor text-primary"></i>
-                     </td>
-                  </tr>
-               </tbody>
-            </table>
-            <div class="d-flex justify-content-between p-2 my-pag">
-               <ngb-pagination [collectionSize]="blogs.options.total" [pageSize]="blogs.options.limit" [(page)]="blogs.options.pageno" [maxSize]="5" [rotate]="true" (pageChange)="onPagination($event)"></ngb-pagination>
-               <select class="custom-select pagination" [(ngModel)]="blogs.options.limit" (ngModelChange)="setPageSize()">
-                   <option [ngValue]="10">10 items per page</option>
-                   <option [ngValue]="50">50 items per page</option>
-                   <option [ngValue]="100">100 items per page</option>
-               </select>
-           </div>
-         </div>
-      </div>
-   </div>
-</div>
-<div class="modal fade blog_edit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content shadow-lg mb-3">
-       <div class="modal-body">
-      <div class="">
-         <div class="row ">
-            <div class="col-lg-6">
-               <h6>Edit Blog</h6>
+    <div class="col-lg-3 p-4">
+        <app-left-side></app-left-side>
+    </div>
+    <div class="col-lg-9 p-4">
+        <div class="row">
+            <div class="col-lg-6 text-left">
+                <h5>Active Blogs</h5>
             </div>
             <div class="col-lg-6 text-lg-right">
-                <i data-dismiss="modal" aria-label="Close" class="icon-feather-x cursor text-primary"></i>
+                <a class="text-primary text-underline" (click)="showAddModal(content)">+ Add New Blog</a>
             </div>
-         </div>
-          <div class="card-body">
-                  <div class="form-step-header">
-                     <div class="step" [class.active]="step == 1">
-                         <span class="step-circle">1</span>
-                         <span class="step-label">Blog Title</span>
-                     </div>
-                     <div class="line"></div>
-                     <div class="step" [class.active]="step == 2">
-                         <span class="step-circle">2</span>
-                         <span class="step-label">Blog Body</span>
-                     </div>
-                 </div>
-                  <form class="p-0" [formGroup]="blogForm">
-                        <div class="content" [hidden]="step != 1">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <input type="text" value="Title" name="title" formControlName="title" class="form-control bg-light" [ngClass]="{ 'is-invalid': errStep1 && f.title.errors }" placeholder="Title*" />
-                                    <div *ngIf="errStep1 && f.title.errors" class="invalid-feedback">
-                                        <div *ngIf="f.title.errors.required">Title is required</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button (click)="next()" class="btn btn-main">Next</button>
-                        </div>
-                        <div class="content" [hidden]="step != 2">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                       <label for="text">File</label>
-                                       <input type="file" class="form-control bg-light" placeholder="File" id="file">
-                                    </div>
-                                </div>
-                                 <div class="col-lg-12">
-                                    <div class="form-group">
-                                       <label for="text">Body</label>
-                                       <textarea rows="4" class="form-control bg-light border-0 text-left"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                   <angular-editor [placeholder]="'Enter text here...'" [config]="editorConfig"></angular-editor> 
-                                </div>
-                            </div>
-                            <div class="d-flex">
-                               <button class="btn btn-main mr-3" (click)="previous()">Previous
-                               </button>
-                                <button class="btn btn-main" [disabled]="blogForm.invalid" (click)="blogSubmit()">Submit</button>
-                            </div>
-                        </div>
-                    </form>
-               </div>
+            <div class="col-lg-12">
+                <table class="table table-striped">
+                    <thead class="bg-header_t text-primary">
+                        <tr>
+                            <th>S.No</th>
+                            <th>Title</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let b of blogs.list; let i = index">
+                            <td> {{ i+1 }} </td>
+                            <td> {{ b.title }} </td>
+                            <td>
+                                <i class="icon-feather-edit text-primary mr-2 cursor" (click)="showEdit(content, b)"></i>
+                                <i class="icon-feather-trash-2 cursor text-primary"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-between p-2 my-pag">
+                    <ngb-pagination [collectionSize]="blogs.options.total" [pageSize]="blogs.options.limit" [(page)]="blogs.options.pageno" [maxSize]="5" [rotate]="true" (pageChange)="onPagination($event)"></ngb-pagination>
+                    <select class="custom-select pagination" [(ngModel)]="blogs.options.limit" (ngModelChange)="setPageSize()">
+                        <option [ngValue]="10">10 items per page</option>
+                        <option [ngValue]="50">50 items per page</option>
+                        <option [ngValue]="100">100 items per page</option>
+                    </select>
+                </div>
+            </div>
         </div>
     </div>
-    </div>
-  </div>
 </div>
-<!-- Modal -->
-<!-- Modal -->
-<div class="modal fade blog_add" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-   <div class="modal-dialog modal-lg">
-      <div class="modal-content shadow-lg mb-3">
-         <div class="modal-body">
+<ng-template #content let-modal>
+    <div class="modal-content shadow-lg mb-3">
+        <div class="modal-body">
             <div class="">
-               <div class="row ">
-                  <div class="col-lg-6">
-                     <h6>Add Blog</h6>
-                  </div>
-                  <div class="col-lg-6 text-lg-right">
-                     <i data-dismiss="modal" aria-label="Close" class="icon-feather-x cursor text-primary"></i>
-                  </div>
-               </div>
-               <div class="card-body">
-                  <div class="form-step-header">
-                     <div class="step" [class.active]="step == 1">
-                         <span class="step-circle">1</span>
-                         <span class="step-label">Blog Title</span>
-                     </div>
-                     <div class="line"></div>
-                     <div class="step" [class.active]="step == 2">
-                         <span class="step-circle">2</span>
-                         <span class="step-label">Blog Body</span>
-                     </div>
-                 </div>
-                  <form class="p-0" [formGroup]="blogForm">
+                <div class="row ">
+                    <div class="col-lg-6">
+                        <h6>{{ action}} Blog</h6>
+                    </div>
+                    <div class="col-lg-6 text-lg-right" (click)="modal.dismiss()">
+                        <i aria-label="Close" class="icon-feather-x cursor text-primary"></i>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="form-step-header">
+                        <div class="step" [class.active]="step == 1">
+                            <span class="step-circle">1</span>
+                            <span class="step-label">Blog Title</span>
+                        </div>
+                        <div class="line"></div>
+                        <div class="step" [class.active]="step == 2">
+                            <span class="step-circle">2</span>
+                            <span class="step-label">Blog Body</span>
+                        </div>
+                    </div>
+                    <form class="p-0" [formGroup]="blogForm">
                         <div class="content" [hidden]="step != 1">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <input type="text" name="title" formControlName="title" class="form-control bg-light" [ngClass]="{ 'is-invalid': errStep1 && f.title.errors }" placeholder="Title*" />
-                                    <div *ngIf="errStep1 && f.title.errors" class="invalid-feedback">
-                                        <div *ngIf="f.title.errors.required">Title is required</div>
+                                    <div class="form-group">
+                                        <label>Title *</label>
+                                        <input type="text" formControlName="title" class="form-control bg-light" [ngClass]="{ 'is-invalid': errStep1 && f.title.errors }" placeholder="Title*" />
+                                        <div *ngIf="errStep1 && f.title.errors" class="invalid-feedback">
+                                            <div *ngIf="f.title.errors.required">Title is required</div>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Category *</label>
+                                        <select formControlName="categoryid" class="form-control bg-light">
+                                            <option *ngFor="let c of categories" [value]="c.categoryid">{{ c.title }}</option>
+                                        </select>
+                                        <div *ngIf="errStep1 && f.categoryid.errors" class="invalid-feedback">
+                                            <div *ngIf="f.categoryid.errors.required">Category is required</div>
+                                        </div>
+                                    </div>
+                                 </div>
                             </div>
                             <button (click)="next()" class="btn btn-main">Next</button>
                         </div>
@@ -153,31 +96,26 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                       <label for="text">File</label>
-                                       <input type="file" class="form-control bg-light" placeholder="File" id="file">
-                                    </div>
-                                </div>
-                                 <div class="col-lg-12">
-                                    <div class="form-group">
-                                       <label for="text">Body</label>
-                                       <textarea rows="4" class="form-control bg-light border-0 text-left"></textarea>
+                                        <label for="text">File</label>
+                                        <input type="file" class="form-control bg-light" placeholder="File" id="file">
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
-                                   <angular-editor [placeholder]="'Enter text here...'" [config]="editorConfig"></angular-editor> 
+                                    <div class="form-group">
+                                        <label for="text">Body</label>
+                                        <!-- <textarea rows="4" class="form-control bg-light border-0 text-left"></textarea> -->
+                                        <angular-editor formControlName="description" [placeholder]="'Enter text here...'" [config]="editorConfig"></angular-editor>
+                                    </div>
                                 </div>
                             </div>
                             <div class="d-flex">
-                               <button class="btn btn-main mr-3" (click)="previous()">Previous
-                               </button>
-                                <button class="btn btn-main" [disabled]="blogForm.invalid" (click)="blogSubmit()">Submit</button>
+                                <button class="btn btn-main mr-3" (click)="previous()">Previous</button>
+                                <button class="btn btn-main" [disabled]="blogForm.invalid" (click)="submitModal(modal)">Submit</button>
                             </div>
                         </div>
                     </form>
-               </div>
+                </div>
             </div>
-         </div>
-      </div>
-   </div>
-</div>
-<!-- Modal -->
+        </div>
+    </div>
+</ng-template>

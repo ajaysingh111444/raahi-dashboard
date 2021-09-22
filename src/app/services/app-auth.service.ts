@@ -514,6 +514,40 @@ export class AppAuth {
     }
 
     /**
+     * Get list of all the categories possible
+     * @returns 
+     */
+     public getCategories() {
+        return new Promise((resolve, reject) => {
+            let url = `${this.config.baseUri}/blogs/categories/v1`;
+
+            this.http.sendRequest("get", url).then(
+                (data) => {
+                    if (data.status == 401) {
+                        this.triggerAuthFail();
+                    }
+                    else {
+                        let res = this.parseJson(data.response);
+
+                        if (res.data && res.data[0] && res.data[0].attributes && res.data[0].attributes.list) {
+                            resolve(res.data[0].attributes.list);
+                        }
+                        else {
+                            console.log("error", res);
+                            let errObj = this.commonErrorHandler(res);
+                            reject(errObj);
+                        }
+                    }
+                },
+                (err) => {
+                    console.log(err);
+                    reject(this.commonErrorHandler(err));
+                }
+            );
+        });
+    }
+
+    /**
      * Get blogs with desired filters, if any
      * @param limit number of items per page
      * @param page page number for pagination
@@ -548,6 +582,76 @@ export class AppAuth {
                                 delete res.data[0].attributes.blogs.data;
                             }
                             resolve(res.data[0].attributes.blogs);
+                        }
+                        else {
+                            console.log("error", res);
+                            let errObj = this.commonErrorHandler(res);
+                            reject(errObj);
+                        }
+                    }
+                },
+                (err) => {
+                    console.log(err);
+                    reject(this.commonErrorHandler(err));
+                }
+            );
+        });
+    }
+
+    /**
+     * Create blog
+     * @param blog blog object
+     * @returns 
+     */
+     public addBlog(blog) {
+        return new Promise((resolve, reject) => {
+            let url = `${this.config.baseUri}/blogs/v1`;
+
+            this.http.sendRequest("POST", url, blog).then(
+                (data) => {
+                    if (data.status == 401) {
+                        this.triggerAuthFail();
+                    }
+                    else {
+                        let res = this.parseJson(data.response);
+
+                        if (res.data && res.data[0] && res.data[0].attributes) {
+                            resolve(res.data[0].attributes);
+                        }
+                        else {
+                            console.log("error", res);
+                            let errObj = this.commonErrorHandler(res);
+                            reject(errObj);
+                        }
+                    }
+                },
+                (err) => {
+                    console.log(err);
+                    reject(this.commonErrorHandler(err));
+                }
+            );
+        });
+    }
+
+    /**
+     * Update blog information
+     * @param blog blog object
+     * @returns 
+     */
+     public updateBlog(blog) {
+        return new Promise((resolve, reject) => {
+            let url = `${this.config.baseUri}/blogs/v1`;
+
+            this.http.sendRequest("PUT", url, blog).then(
+                (data) => {
+                    if (data.status == 401) {
+                        this.triggerAuthFail();
+                    }
+                    else {
+                        let res = this.parseJson(data.response);
+
+                        if (res.data && res.data[0] && res.data[0].attributes) {
+                            resolve(res.data[0].attributes);
                         }
                         else {
                             console.log("error", res);

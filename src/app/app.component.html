@@ -1,7 +1,9 @@
 <div>
-    <!-- header-->
+    <!--outlet-->
+    <app-header *ngIf="showHeaderFooter"></app-header>
     <router-outlet></router-outlet>
-    <!-- footer -->
+    <app-footer *ngIf="showHeaderFooter"></app-footer>
+    <!--outlet-->
  </div>
 <div class="app-loading" [hidden]="config.isLoading !== true" [class.opaque]="preloader">
     <div class="logo"></div>

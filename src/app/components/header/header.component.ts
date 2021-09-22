@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject, PLATFORM_ID } from "@angular/core";
-import { isPlatformBrowser, DOCUMENT } from "@angular/common";
+import { Component, Inject } from "@angular/core";
+import { DOCUMENT } from "@angular/common";
 import { Router } from "@angular/router";
 import { Events } from "../../shared/app-events";
 import { AppAuth } from "../../services/app-auth.service";
@@ -9,18 +9,9 @@ import { AppAuth } from "../../services/app-auth.service";
     templateUrl: "./header.component.html",
     styleUrls: ["./header.component.css"],
 })
-export class HeaderComponent implements OnInit {
-    display: boolean = false;
-    
+export class HeaderComponent {
     constructor(public router: Router, @Inject(DOCUMENT) private dom: Document, public auth: AppAuth,
-        @Inject(PLATFORM_ID) private platformId: Object, public events: Events) {
-    }
-
-    ngOnInit() {
-        if (isPlatformBrowser(this.platformId)) {
-            this.display = true;
-        }
-        this.dom.body.classList.add('has-header');
+        public events: Events) {
     }
 
     openNav() {
@@ -33,17 +24,8 @@ export class HeaderComponent implements OnInit {
         this.dom.getElementById("mySidenavHidden").style.overflow = "visible";
     }
 
-    HiddenNav() {
-        this.dom.getElementById("mySidenav").style.width = "0";
-        this.dom.getElementById("mySidenavHidden").style.overflow = "visible";
-    }
-
     logout() {
         this.events.publish("user:logout", false);
-    }
-
-    ngOnDestroy() {
-        this.dom.body.classList.remove('has-header');
     }
 
 }

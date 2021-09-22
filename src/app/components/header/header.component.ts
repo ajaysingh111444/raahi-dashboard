@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
         if (isPlatformBrowser(this.platformId)) {
             this.display = true;
         }
+        this.dom.body.classList.add('has-header');
     }
 
     openNav() {
@@ -39,6 +40,10 @@ export class HeaderComponent implements OnInit {
 
     logout() {
         this.events.publish("user:logout", false);
+    }
+
+    ngOnDestroy() {
+        this.dom.body.classList.remove('has-header');
     }
 
 }

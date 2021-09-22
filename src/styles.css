@@ -16,6 +16,10 @@ body {
   color: #000;
 }
 
+body.has-header .user-wrapper {
+  padding-top: 100px !important;
+}
+
 button:focus {
   outline: none;
   box-shadow: none;

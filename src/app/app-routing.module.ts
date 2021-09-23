@@ -22,7 +22,6 @@ import { BlogListComponent } from './pages/blog-list/blog-list.component';
 import { DonorListComponent } from './pages/donor-list/donor-list.component';
 import { UserListComponent } from './pages/user-list/user-list.component';
 import { VolunteerListComponent } from './pages/volunteer-list/volunteer-list.component';
-import { AddBlogComponent } from './pages/add-blog/add-blog.component';
 import { AddUserComponent } from './pages/add-user/add-user.component';
 import { EmployeeListComponent } from './pages/employee-list/employee-list.component';
 import { EmployeeProfileComponent } from './pages/employee-profile/employee-profile.component';
@@ -398,11 +397,6 @@ const routes: Routes = [
   {
     path: 'volunteer-list',
     component: VolunteerListComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'add-blog',
-    component: AddBlogComponent,
     canActivate: [AuthGuard],
   },
   {

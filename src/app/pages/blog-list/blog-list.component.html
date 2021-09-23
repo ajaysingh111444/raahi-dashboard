@@ -8,7 +8,7 @@
                 <h5>Active Blogs</h5>
             </div>
             <div class="col-lg-6 text-lg-right">
-                <a class="text-primary text-underline" (click)="showAddModal(content)">+ Add New Blog</a>
+                <a class="text-primary text-underline cursor" (click)="showAddModal(content)">+ Add New Blog</a>
             </div>
             <div class="col-lg-12">
                 <table class="table table-striped">
@@ -16,6 +16,7 @@
                         <tr>
                             <th>S.No</th>
                             <th>Title</th>
+                            <th>Category</th>
                             <th style="text-align: center;">Actions</th>
                         </tr>
                     </thead>
@@ -23,6 +24,7 @@
                         <tr *ngFor="let b of blogs.list; let i = index" [class.deleted]="b.status == 'deleted'">
                             <td class="serial"> {{ i+1 }} </td>
                             <td class="title"> {{ b.title }} </td>
+                            <td>{{b.categoryname}}</td>
                             <td class="actions">
                                 <span *ngIf="b.status != 'deleted'">
                                     <i class="icon-feather-edit text-primary mr-2 cursor" (click)="showEdit(content, b)"></i>

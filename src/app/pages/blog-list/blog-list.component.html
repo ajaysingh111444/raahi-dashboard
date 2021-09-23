@@ -87,7 +87,7 @@
                                     <div class="form-group">
                                         <label>Category *</label>
                                         <select formControlName="categoryid" class="form-control bg-light">
-                                        <option *ngFor="let c of categories" [value]="c.categoryid">{{ c.title }}</option>
+                                            <option *ngFor="let c of categories" [value]="c.categoryid">{{ c.title }}</option>
                                         </select>
                                         <div *ngIf="errStep1 && f.categoryid.errors" class="invalid-feedback">
                                             <div *ngIf="f.categoryid.errors.required">Category is required</div>

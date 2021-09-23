@@ -79,7 +79,6 @@ export class BlogListComponent implements OnInit {
         this.auth.getCategories().then(
             (cats: any) => {
                 this.categories = cats;
-                //console.log(this.categories);
             },
             (err: any) => {
                 this.toastr.error(err.title, err.detail);
@@ -97,7 +96,6 @@ export class BlogListComponent implements OnInit {
         this.auth.getBlogs(op.limit, op.pageno, op.search, op.cslug).then(
             (blog: any) => {
                 this.blogs = blog;
-               // console.log(this.blogs);
                 this.config.dismissLoading();
             },
             (err) => {
@@ -182,6 +180,7 @@ export class BlogListComponent implements OnInit {
         this.action = "Add";
         this.blogForm.reset();
         this.temp = null;
+
         this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title-add'});
     }
 
@@ -213,7 +212,6 @@ export class BlogListComponent implements OnInit {
             this.temp.title = c.title.value;
             this.temp.description = c.description.value;
             this.temp.categoryid = c.categoryid.value;
-
 
             let bl = {
                 "bid": this.temp.bid,

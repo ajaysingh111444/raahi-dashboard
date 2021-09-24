@@ -14,17 +14,17 @@
                 <table class="table table-striped">
                     <thead class="bg-header_t text-primary">
                         <tr>
-                            <th>S.No</th>
-                            <th>Title</th>
-                            <th>Category</th>
-                            <th style="text-align: center;">Actions</th>
+                            <th class="serial">S.No</th>
+                            <th class="title">Title</th>
+                            <th class="category">Category</th>
+                            <th class="actions">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let b of blogs.list; let i = index" [class.deleted]="b.status == 'deleted'">
                             <td class="serial"> {{ i+1 }} </td>
                             <td class="title"> {{ b.title }} </td>
-                            <td>{{b.categoryname}}</td>
+                            <td class="category"> {{ b.categoryname }} </td>
                             <td class="actions">
                                 <span *ngIf="b.status != 'deleted'">
                                     <i class="icon-feather-edit text-primary mr-2 cursor" (click)="showEdit(content, b)"></i>
@@ -101,7 +101,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <file-upload label="Featured Image" requiredFileType="image/*" [placeholderImg]="temp.featuredimage" (fileSelected)="handleInputChange($event)"></file-upload>
+                                        <file-upload label="Featured Image" requiredFileType="image/*" [placeholderImg]="temp?.featuredimage" (fileSelected)="handleInputChange($event)"></file-upload>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">

@@ -127,7 +127,7 @@ export class BlogListComponent implements OnInit {
 
         if (c.title.valid) {
             this.errStep1 = false; // no errors should display
-            // TODO: If add-form, then submit blog with title
+            // If add-form, then submit blog with title
             if(this.action == 'Add') {
                 this.config.showLoading();
                 this.newBlog();
@@ -297,7 +297,7 @@ export class BlogListComponent implements OnInit {
             let sub = 'data:'+f.type+';base64,';
             let url = f.base64url.replace(sub, '');
 
-            this.auth.uploadMedia(this.temp.bid, f.name, url).then(
+            this.auth.uploadMediaBlog(this.temp.bid, f.name, url).then(
                 (res: any) => {
                     console.log(res);
                     

@@ -24,6 +24,7 @@ export class User {
     profilePic: string;
     roles: Array<string> = [];
     designation: string;
+    orgId: string;
 
     constructor(userId: string, authToken: string, refreshToken: string, email: string, firstname: string, middlename: string, lastname: string, phoneNumber: string, gender: string, roles: Array<string>) {
         this.userId = userId;
@@ -344,7 +345,8 @@ export class AppAuth {
                             this.currentUser.postalcode = u.postalcode;
                             this.currentUser.dob = u.dob;
 
-                            this.currentUser.designation = u.designation
+                            this.currentUser.designation = u.designation;
+                            this.currentUser.orgId = u.orgid;
 
                             let cuStr = JSON.stringify(this.currentUser);
                             localStorage.setItem(`user_${this.config.application}`, cuStr);
@@ -514,7 +516,7 @@ export class AppAuth {
     }
 
     /**
-     * Get list of all the categories possible
+     * Get list of all the categories possible for blog
      * @returns 
      */
      public getCategories() {
@@ -675,11 +677,208 @@ export class AppAuth {
      * @param base64code file in base64 format
      * @returns 
      */
-     public uploadMedia(bid, filename, base64code) {
+     public uploadMediaBlog(bid, filename, base64code) {
         return new Promise((resolve, reject) => {
             let url = `${this.config.baseUri}/blogs/media/v1`;
             let param = {
                 "bid": bid,
+                "filename": filename,
+                "base64code": base64code
+            }
+
+            this.http.sendRequest("POST", url, param).then(
+                (data) => {
+                    if (data.status == 401) {
+                        this.triggerAuthFail();
+                    }
+                    else {
+                        let res = this.parseJson(data.response);
+
+                        if (res.data && res.data[0] && res.data[0].attributes) {
+                            resolve(res.data[0].attributes);
+                        }
+                        else {
+                            console.log("error", res);
+                            let errObj = this.commonErrorHandler(res);
+                            reject(errObj);
+                        }
+                    }
+                },
+                (err) => {
+                    console.log(err);
+                    reject(this.commonErrorHandler(err));
+                }
+            );
+        });
+    }
+
+    /**
+     * Get list of all the categories possible for stories
+     * @returns 
+     */
+     public getStoryCategories() {
+        return new Promise((resolve, reject) => {
+            let url = `${this.config.baseUri}/stories/categories/v1`;
+
+            this.http.sendRequest("get", url).then(
+                (data) => {
+                    if (data.status == 401) {
+                        this.triggerAuthFail();
+                    }
+                    else {
+                        let res = this.parseJson(data.response);
+
+                        if (res.data && res.data[0] && res.data[0].attributes && res.data[0].attributes.categories) {
+                            resolve(res.data[0].attributes.categories);
+                        }
+                        else {
+                            console.log("error", res);
+                            let errObj = this.commonErrorHandler(res);
+                            reject(errObj);
+                        }
+                    }
+                },
+                (err) => {
+                    console.log(err);
+                    reject(this.commonErrorHandler(err));
+                }
+            );
+        });
+    }
+
+    /**
+     * Get stories with desired filters, if any
+     * @param limit number of items per page
+     * @param page page number for pagination
+     * @param keyword search term for story
+     * @param cslug search term for searching in slug of the stories
+     * @returns Promise with story object
+     */
+    public getStories(limit=10, page=1, keyword="", cslug="") {
+        return new Promise((resolve, reject) => {
+            let url = `${this.config.baseUri}/stories/list/v1?limit=${limit}&pageno=${page}`;
+
+            if(cslug && cslug.length > 0) {
+                url += '&cslug='+cslug;
+            }
+
+            if(keyword && keyword.length > 0) {
+                url += '&search='+keyword;
+            }
+
+            this.http.sendRequest("get", url).then(
+                (data) => {
+                    if (data.status == 401) {
+                        this.triggerAuthFail();
+                    }
+                    else {
+                        let res = this.parseJson(data.response);
+
+                        if (res.data && res.data[0] && res.data[0].attributes && res.data[0].attributes.story) {
+                            if(res.data[0].attributes.story.data) {
+                                // this happens when no data is there, problem in API
+                                res.data[0].attributes.story['list'] = [];
+                                delete res.data[0].attributes.story.data;
+                            }
+                            resolve(res.data[0].attributes.story);
+                        }
+                        else {
+                            console.log("error", res);
+                            let errObj = this.commonErrorHandler(res);
+                            reject(errObj);
+                        }
+                    }
+                },
+                (err) => {
+                    console.log(err);
+                    reject(this.commonErrorHandler(err));
+                }
+            );
+        });
+    }
+
+    /**
+     * Create story
+     * @param story story object
+     * @returns 
+     */
+     public addStory(story) {
+        return new Promise((resolve, reject) => {
+            let url = `${this.config.baseUri}/stories/v1`;
+
+            this.http.sendRequest("POST", url, story).then(
+                (data) => {
+                    if (data.status == 401) {
+                        this.triggerAuthFail();
+                    }
+                    else {
+                        let res = this.parseJson(data.response);
+
+                        if (res.data && res.data[0] && res.data[0].attributes) {
+                            resolve(res.data[0].attributes);
+                        }
+                        else {
+                            console.log("error", res);
+                            let errObj = this.commonErrorHandler(res);
+                            reject(errObj);
+                        }
+                    }
+                },
+                (err) => {
+                    console.log(err);
+                    reject(this.commonErrorHandler(err));
+                }
+            );
+        });
+    }
+
+    /**
+     * Update story information
+     * @param story blog object
+     * @returns 
+     */
+     public updateStory(story) {
+        return new Promise((resolve, reject) => {
+            let url = `${this.config.baseUri}/stories/v1`;
+
+            this.http.sendRequest("PUT", url, story).then(
+                (data) => {
+                    if (data.status == 401) {
+                        this.triggerAuthFail();
+                    }
+                    else {
+                        let res = this.parseJson(data.response);
+
+                        if (res.data && res.data[0] && res.data[0].attributes) {
+                            resolve(res.data[0].attributes);
+                        }
+                        else {
+                            console.log("error", res);
+                            let errObj = this.commonErrorHandler(res);
+                            reject(errObj);
+                        }
+                    }
+                },
+                (err) => {
+                    console.log(err);
+                    reject(this.commonErrorHandler(err));
+                }
+            );
+        });
+    }
+
+    /**
+     * Upload media for story
+     * @param stid story ID
+     * @param filename name of the file
+     * @param base64code file in base64 format
+     * @returns 
+     */
+     public uploadMediaStories(stid, filename, base64code) {
+        return new Promise((resolve, reject) => {
+            let url = `${this.config.baseUri}/stories/media/v1`;
+            let param = {
+                "stid": stid,
                 "filename": filename,
                 "base64code": base64code
             }

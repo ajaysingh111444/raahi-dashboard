@@ -1,12 +1,11 @@
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
 import { AppAuth } from "../../services/app-auth.service";
-import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { ApiService } from "./../../shared/api.service";
-import { globalConstant } from 'src/app/shared/global.modal';
 import { Config } from "src/app/services/config";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { NgbDate, NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { RegExpPatterns } from "src/app/shared/app-validators";
+import * as moment from "moment-timezone";
 
 @Component({
   selector: 'app-story-list',
@@ -15,7 +14,7 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 })
 export class StoryListComponent implements OnInit {
 
-  storyForm: FormGroup;
+    storyForm: FormGroup;
     step: number = 1;
     errStep1: boolean = false;
     errStep2: boolean = false;
@@ -23,8 +22,11 @@ export class StoryListComponent implements OnInit {
     action: string = 'Add';
     temp: any = {};
     categories: Array<any> = [];
+    displayName: string;
+    mnDate: any;
+    mxDate: any;
 
-    blogs = {
+    stories = {
         "options": {
             "limit": 10,
             "pageno": 1,
@@ -36,70 +38,62 @@ export class StoryListComponent implements OnInit {
         "list": []
     }
     
-    editorConfig: AngularEditorConfig = {
-        editable: true,
-        spellcheck: true,
-        height: '15rem',
-        minHeight: '5rem',
-        placeholder: 'Enter text here...',
-        translate: 'no',
-        defaultParagraphSeparator: 'p',
-        defaultFontName: 'Arial',
-        toolbarHiddenButtons: [
-            ['bold']
-        ],
-        customClasses: [
-            {
-                name: "quote",
-                class: "quote",
-            },
-            {
-                name: 'redText',
-                class: 'redText'
-            },
-            {
-                name: "titleText",
-                class: "titleText",
-                tag: "h1",
-            },
-        ]
-    };
+    patterns = new RegExpPatterns();
 
     constructor(public formBuilder: FormBuilder, public toastr: ToastrService, public auth: AppAuth, public config: Config,
-        private modalService: NgbModal) { }
+        private modalService: NgbModal) {
+            
+        this.displayName = this.auth.currentUser.firstName +' '+this.auth.currentUser.lastName;
+        
+        let today = moment().add(1, 'days');
+        
+        this.mnDate = { year: today.year(), month: today.month()+1, day: today.date() };
+        this.mxDate = { year: today.add(10, 'years').year(), month: today.month()+1, day: today.date() };
+    }
 
     ngOnInit(): void {
-        this.storyForm = this.formBuilder.group(
-            {
-                title: ["", Validators.required],
-                categoryid: ["", Validators.required],
-                description: ["", Validators.required],
-                file: [""],
-            },
-        );
+        this.storyForm = this.formBuilder.group({
+            title: ["", [Validators.required]],
+            name: ["", [Validators.required]],
+            slug: ["", [Validators.required]],
+            categoryid: ["", [Validators.required]],
+            description: ["", [Validators.required]],
+            youtubeurl: ["", [Validators.pattern(this.patterns.url)]],
+            targetdate: ["", [Validators.required]],
+            targetamount: ["", [Validators.required, Validators.min(100)]],
+            targetcurrency: ["", [Validators.required]],
+        });
 
-        this.auth.getCategories().then(
+        this.auth.getStoryCategories().then(
             (cats: any) => {
                 this.categories = cats;
-                //console.log(this.categories);
+                console.log(this.categories);
             },
             (err: any) => {
                 this.toastr.error(err.title, err.detail);
             }
         );
 
-        this.getBlogs();
+        this.getStories();
     }
 
-    getBlogs() {
+    updateSlug() {
+        if(this.action == 'Add') {
+            let s = (`${this.f.name.value} ${this.f.title.value} ${Date.now()}`);
+            s = s.toLowerCase().replace(/ +/g, '-');
+            console.log(s);
+            this.f.slug.setValue(s);
+        }
+    }
+
+    getStories() {
         this.config.showLoading();
-        let op = this.blogs.options;
+        let op = this.stories.options;
         console.log(op);
 
-        this.auth.getBlogs(op.limit, op.pageno, op.search, op.cslug).then(
-            (blog: any) => {
-                this.blogs = blog;
-               // console.log(this.blogs);
+        this.auth.getStories(op.limit, op.pageno, op.search, op.cslug).then(
+            (st: any) => {
+                this.stories = st;
                 this.config.dismissLoading();
             },
             (err) => {
@@ -111,18 +105,29 @@ export class StoryListComponent implements OnInit {
     }
 
     public onPagination(page: any) {
-        console.log(page);
-        console.log(this.blogs.options);
-        this.getBlogs();
+        // console.log(page);
+        // console.log(this.stories.options);
+        this.getStories();
     }
 
     setPageSize() {
-        console.log(this.blogs.options);
-        this.getBlogs();
+        console.log(this.stories.options);
+        this.getStories();
     }
 
     get f() {
         return this.storyForm.controls;
+    }
+
+    private getDate() {
+        let d = this.f.targetdate.value;
+        let m: any = d.month;
+        
+        if(m < 10) {
+            m = '0' + m.toString();
+        }
+        
+        return `${d.year}-${m}-${d.day}`;
     }
 
     next() {
@@ -131,13 +136,13 @@ export class StoryListComponent implements OnInit {
 
         if (c.title.valid) {
             this.errStep1 = false; // no errors should display
-            // TODO: If add-form, then submit blog with title
+            // If add-form, then submit story with title
             if(this.action == 'Add') {
                 this.config.showLoading();
-                this.newBlog();
+                this.newStory();
             }
             else {
-                // do nothing, blog object will retain values for final update
+                // do nothing, story object will retain values for final update
                 this.step = 2;
             }
         }
@@ -146,23 +151,29 @@ export class StoryListComponent implements OnInit {
         }
     }
 
-    newBlog() {
+    newStory() {
         let c = this.storyForm.controls;
 
-        let b = {
+        let st = {
+            "organizationid": this.auth.currentUser.orgId,
             "categoryid": c.categoryid.value,
             "title": c.title.value,
+            "name": c.name.value,
+            "story": "",
             "featuredimage": "",
             "youtubeurl": "",
-            "description": "",
-            "status": ""
-        };
+            "slug": c.slug.value,
+            "report": {},
+            "targetdate": "",
+            "targetamount": "",
+            "targetcurrency": ""
+        }
         
-        this.auth.addBlog(b).then(
+        this.auth.addStory(st).then(
             (res: any) => {
                 console.log(res);
                 this.step = 2;
-                this.temp = res.blog;
+                this.temp = res.story;
                 this.config.dismissLoading();
             },
             (err: any) => {
@@ -183,26 +194,42 @@ export class StoryListComponent implements OnInit {
         this.step = 1;
         this.action = "Add";
         this.storyForm.reset();
+        this.storyForm.controls.categoryid.setValue(this.categories[0].categoryid);
+        this.storyForm.controls.targetamount.setValue(100);
+        this.storyForm.controls.name.setValue(this.displayName);
         this.temp = null;
-        this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title-add'});
+        this.modalService.open(content, { size: 'lg', scrollable: false });
     }
 
-    showEdit(content, blog) {
+    showEdit(content, story) {
         this.step = 1;
         this.action = "Edit";
         this.storyForm.reset();
 
-        this.temp = blog;
-        this.setFormValues(blog);
-        this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+        this.temp = story;
+        this.setFormValues(story);
+        this.modalService.open(content, { size: 'lg', scrollable: false });
     }
 
-    private setFormValues(blog) {
+    private setFormValues(story) {
         let b = this.storyForm.controls;
 
-        b.title.setValue(blog.title);
-        b.description.setValue(blog.description);
-        b.categoryid.setValue(blog.categoryid);
+        b.title.setValue(story.title);
+        b.name.setValue(story.name);
+        b.slug.setValue(story.slug);
+        b.categoryid.setValue(story.categoryid);
+        b.description.setValue(story.story);
+        b.youtubeurl.setValue(story.youtubeurl);
+        b.targetamount.setValue(story.targetamount);
+        b.targetcurrency.setValue(story.targetcurrency);
+
+        // Handling date
+        let d = story.targetdate.split('T')[0].split('-');
+        
+        if(d.length == 3) {
+            let ngdt = new NgbDate(parseInt(d[0]), parseInt(d[1]), parseInt(d[2]));
+            b.targetdate.setValue(ngdt);
+        }
     }
 
     submitModal(ref) {
@@ -213,31 +240,23 @@ export class StoryListComponent implements OnInit {
             this.errStep2 = false; // no errors should display
 
             this.temp.title = c.title.value;
-            this.temp.description = c.description.value;
+            this.temp.story = c.description.value;
             this.temp.categoryid = c.categoryid.value;
+            this.temp.slug = c.slug.value;
+            this.temp.name = c.name.value;
+            this.temp.youtubeurl = c.youtubeurl.value;
+            this.temp.targetdate = this.getDate();
+            this.temp.targetamount = c.targetamount.value;
+            this.temp.targetcurrency = c.targetcurrency.value;
 
-
-            let bl = {
-                "bid": this.temp.bid,
-                "categoryid": this.temp.categoryid,
-                "title": this.temp.title,
-                "featuredimage": this.temp.featuredimage || "",
-                "youtubeurl": this.temp.youtubeurl || "",
-                "description": this.temp.description || "",
-                "metatile": this.temp.metatile || "",
-                "metakeywords": this.temp.metakeywords || "",
-                "metadescription": this.temp.metadescription || "",
-                "status": this.temp.status || "",
-            }
-
-            // Call blog update method here
-            this.auth.updateBlog(bl).then(
+            // Call story update method here
+            this.auth.updateStory(this.temp).then(
                 (res: any) => {
                     console.log(res);
                     
                     if(this.action == "Add") {
-                        // Add new blog item to blog list
-                        this.blogs.options.total = this.blogs.list.unshift(this.temp);
+                        // Add new story item to story list
+                        this.stories.options.total = this.stories.list.unshift(this.temp);
                     }
                     
                     ref.close();
@@ -249,15 +268,15 @@ export class StoryListComponent implements OnInit {
                     this.toastr.error(err.title, err.detail);
                 }
             )
-            // TODO: Handle file upload here
         }
         else {
             this.errStep2 = true // display step 2 errors
+            console.log(this.f);
         }
     }
 
-    confirmDel(ref, blog) {
-        this.temp = blog;
+    confirmDel(ref, story) {
+        this.temp = story;
         this.modalService.open(ref, {ariaLabelledBy: 'modal-basic-title-add'});
     }
 
@@ -265,21 +284,24 @@ export class StoryListComponent implements OnInit {
         this.config.showLoading();
         this.temp.status = 'deleted';
 
-        let bl = {
-            "bid": this.temp.bid,
+        let st = {
+            "stid": this.temp.stid,
             "categoryid": this.temp.categoryid,
             "title": this.temp.title,
+            "name": this.temp.name,
+            "story": this.temp.description || "",
             "featuredimage": this.temp.featuredimage || "",
             "youtubeurl": this.temp.youtubeurl || "",
-            "description": this.temp.description || "",
-            "metatile": this.temp.metatile || "",
-            "metakeywords": this.temp.metakeywords || "",
-            "metadescription": this.temp.metadescription || "",
-            "status": 'deleted',
+            "slug": this.temp.slug || "",
+            "report": {},
+            "targetdate": "", //"2021-11-30",
+            "targetamount": this.temp.targetamount || 100,
+            "targetcurrency": "", //"INR/USD",
+            "status": "deleted"
         }
 
-        // Call blog update method here
-        this.auth.updateBlog(bl).then(
+        // Call story update method here
+        this.auth.updateStory(st).then(
             (res: any) => {
                 console.log(res);
                 ref.close();
@@ -301,7 +323,7 @@ export class StoryListComponent implements OnInit {
             let sub = 'data:'+f.type+';base64,';
             let url = f.base64url.replace(sub, '');
 
-            this.auth.uploadMedia(this.temp.bid, f.name, url).then(
+            this.auth.uploadMediaStories(this.temp.stid, f.name, url).then(
                 (res: any) => {
                     console.log(res);
                     

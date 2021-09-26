@@ -66,3 +66,40 @@
     margin: .25rem;
 }
 /* Form Step Header CSS ends here */
+.deleted {
+    opacity: 0.6;
+}
+
+.deleted .title {
+    text-decoration: line-through;
+}
+
+.actions {
+    text-align: center;
+}
+
+tr {
+    text-align: center;
+}
+
+tr .title {
+    text-align: left;
+}
+
+.target-amt {
+    padding-left: 100px;
+}
+
+.target-currency {
+    width: 75px;
+    position: absolute;
+    top: 32px;
+}
+
+button.btn.calendar {
+    position: absolute;
+    top: 30px;
+    right: 15px;
+    border: none;
+    height: calc(1.5em + .75rem + 2px);
+}

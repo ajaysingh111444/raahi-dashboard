@@ -31,8 +31,6 @@ export class RegisterComponent implements OnInit, AfterViewInit {
         
         this.mnDate = { year: moment().subtract(60, 'years').year(), month: 1, day: 1 };
         this.mxDate = { year: moment().year(), month: moment().month(), day: moment().date() };
-
-        console.log(this.mnDate, this.mxDate);
     }
 
     ngOnInit(): void {

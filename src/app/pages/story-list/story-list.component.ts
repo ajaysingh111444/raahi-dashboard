@@ -282,28 +282,12 @@ export class StoryListComponent implements OnInit {
 
     delStory(ref) {
         this.config.showLoading();
-        this.temp.status = 'deleted';
-
-        let st = {
-            "stid": this.temp.stid,
-            "categoryid": this.temp.categoryid,
-            "title": this.temp.title,
-            "name": this.temp.name,
-            "story": this.temp.description || "",
-            "featuredimage": this.temp.featuredimage || "",
-            "youtubeurl": this.temp.youtubeurl || "",
-            "slug": this.temp.slug || "",
-            "report": {},
-            "targetdate": "", //"2021-11-30",
-            "targetamount": this.temp.targetamount || 100,
-            "targetcurrency": "", //"INR/USD",
-            "status": "deleted"
-        }
-
-        // Call story update method here
-        this.auth.updateStory(st).then(
+        
+        // Call story delete method here
+        this.auth.deleteStory(this.temp.stid).then(
             (res: any) => {
                 console.log(res);
+                this.temp.status = 'deleted';
                 ref.close();
                 this.config.dismissLoading();
             },

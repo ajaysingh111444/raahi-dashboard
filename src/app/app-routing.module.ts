@@ -26,7 +26,7 @@ import { AddUserComponent } from './pages/add-user/add-user.component';
 import { EmployeeListComponent } from './pages/employee-list/employee-list.component';
 import { EmployeeProfileComponent } from './pages/employee-profile/employee-profile.component';
 import { StoryListComponent } from './pages/story-list/story-list.component';
-
+import { ProductListComponent } from './pages/product-list/product-list.component';
 const routes: Routes = [
   {
     path: '',
@@ -417,6 +417,11 @@ const routes: Routes = [
   {
     path: 'employee-profile',
     component: EmployeeProfileComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'product-list',
+    component: ProductListComponent,
     canActivate: [AuthGuard],
   },
   { path: "**", redirectTo: "/login", pathMatch: "full" },

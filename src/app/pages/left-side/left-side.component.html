@@ -94,4 +94,10 @@
 	   Story List
 		</a>
 	</li>
+	<li class="my-3" *ngIf="auth.currentUser?.roles[0] ==  'superadmin'">
+	   <a routerLink="/product-list" class="text-dark">
+	   	<i class="icon-brand-px  mr-3 left-side py-3"></i>
+	   Product List
+		</a>
+	</li>
 </ul>

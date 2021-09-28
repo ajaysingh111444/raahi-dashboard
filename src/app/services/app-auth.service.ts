@@ -908,4 +908,42 @@ export class AppAuth {
             );
         });
     }
+
+    /**
+     * Delete story
+     * @param stid story ID
+     * @returns promise
+     */
+     public deleteStory(stid) {
+        return new Promise((resolve, reject) => {
+            let url = `${this.config.baseUri}/stories/v1`;
+            let param = {
+                "stid": stid,
+            }
+
+            this.http.sendRequest("DELETE", url, param).then(
+                (data) => {
+                    if (data.status == 401) {
+                        this.triggerAuthFail();
+                    }
+                    else {
+                        let res = this.parseJson(data.response);
+
+                        if (res.data && res.data[0] && res.data[0].attributes) {
+                            resolve(res.data[0].attributes);
+                        }
+                        else {
+                            console.log("error", res);
+                            let errObj = this.commonErrorHandler(res);
+                            reject(errObj);
+                        }
+                    }
+                },
+                (err) => {
+                    console.log(err);
+                    reject(this.commonErrorHandler(err));
+                }
+            );
+        });
+    }
 }

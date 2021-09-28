@@ -52,6 +52,7 @@ import { ChartsModule } from "ng2-charts";
 import { SortableHeaderDirective } from "./directives/sortable.directive";
 import { TableService } from "./services/table.service";
 import { FileUpload } from "./components/file-upload/file-upload.component";
+import { ProductListComponent } from './pages/product-list/product-list.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { FileUpload } from "./components/file-upload/file-upload.component";
     EmployeeProfileComponent,
     StoryListComponent,
     SortableHeaderDirective,
+    ProductListComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "serverApp" }),

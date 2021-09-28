@@ -53,11 +53,11 @@ export class StoryListComponent implements OnInit {
 
     ngOnInit(): void {
         this.storyForm = this.formBuilder.group({
-            title: ["", [Validators.required]],
+            title: ["", [Validators.required, Validators.minLength(50), Validators.maxLength(250)]],
             name: ["", [Validators.required]],
             slug: ["", [Validators.required]],
             categoryid: ["", [Validators.required]],
-            description: ["", [Validators.required]],
+            description: ["", [Validators.required, Validators.minLength(500)]],
             youtubeurl: ["", [Validators.pattern(this.patterns.url)]],
             targetdate: ["", [Validators.required]],
             targetamount: ["", [Validators.required, Validators.min(100)]],

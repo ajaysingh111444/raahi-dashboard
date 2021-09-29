@@ -79,6 +79,7 @@
                                     <input (change)="updateSlug()" type="text" formControlName="title" class="form-control bg-light" placeholder="Title*" />
                                     <div *ngIf="errStep1 && f.title.errors" class="invalid-feedback">
                                         <div *ngIf="f.title.errors.required">Title is required.</div>
+                                        <div *ngIf="(f.title.hasError('maxlength') || f.title.hasError('minlength')) && !f.title.hasError('required')">Title should be 50 - 250 characters.</div>
                                     </div>
                                 </div>
                             </div>
@@ -127,6 +128,7 @@
                                     <angular-editor formControlName="description" [placeholder]="'Enter text here...'" [config]="config.editorConfig"></angular-editor>
                                     <div *ngIf="errStep2 && f.description.errors" class="invalid-feedback">
                                         <div *ngIf="f.description.errors.required">Description is required.</div>
+                                        <div *ngIf="f.description.hasError('minlength') && !f.description.hasError('required')">Description should be minimum 500 characters.</div>
                                     </div>
                                 </div>
                             </div>

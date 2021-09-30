@@ -53,6 +53,7 @@ import { SortableHeaderDirective } from "./directives/sortable.directive";
 import { TableService } from "./services/table.service";
 import { FileUpload } from "./components/file-upload/file-upload.component";
 import { ProductListComponent } from './pages/product-list/product-list.component';
+import { TagInput } from "./components/tag-input/tag-input.component";
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { ProductListComponent } from './pages/product-list/product-list.componen
     HeaderComponent,
     FooterComponent,
     FileUpload,
+    TagInput,
     AutoCompleteInputDirective,
     DashboardComponent,
     BlogsComponent,

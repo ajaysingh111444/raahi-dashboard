@@ -26,7 +26,6 @@ export class StoryListComponent implements OnInit {
     mnDate: any;
     mxDate: any;
     statusList = [];
-    keywords = [];
 
     stories = {
         "options": {
@@ -201,7 +200,6 @@ export class StoryListComponent implements OnInit {
     showAddModal(content) {
         this.step = 1;
         this.action = "Add";
-        this.keywords = [];
         this.storyForm.reset();
         this.storyForm.controls.categoryid.setValue(this.categories[0].categoryid);
         this.storyForm.controls.status.setValue(this.statusList[0].value);
@@ -233,14 +231,7 @@ export class StoryListComponent implements OnInit {
         b.targetamount.setValue(story.targetamount);
         b.targetcurrency.setValue(story.targetcurrency);
         b.status.setValue(story.status);
-        
-        if(story.metakeywords && story.metakeywords.length) {
-            this.keywords = story.metakeywords.split(',');
-        }
-        else {
-            this.keywords = [];
-        }
-        
+        b.metakeywords.setValue(story.metakeywords);
         b.metatitle.setValue(story.metatitle);
         b.metadescription.setValue(story.metadescription);
 
@@ -270,9 +261,7 @@ export class StoryListComponent implements OnInit {
             this.temp.targetamount = c.targetamount.value;
             this.temp.targetcurrency = c.targetcurrency.value;
             this.temp.status = c.status.value;
-
-            this.temp.metakeywords = this.keywords.join(',');
-
+            this.temp.metakeywords = c.metakeywords.value;
             this.temp.metatitle = c.metatitle.value;
             this.temp.metadescription = c.metadescription.value;
 
@@ -351,24 +340,6 @@ export class StoryListComponent implements OnInit {
                 }
             );
         }
-    }
-
-    removeKeyword(k) {
-        let ind = this.keywords.indexOf(k);
-
-        if(ind >= 0) {
-            this.keywords.splice(ind, 1);
-        }
-    }
-
-    addKeyword() {
-        let k = this.f.metakeywords.value;
-
-        if(this.keywords.indexOf(k) < 0) {
-            this.keywords.push(k);
-        }
-
-        this.f.metakeywords.setValue('');
     }
 
 }

@@ -34,44 +34,15 @@ export class BlogListComponent implements OnInit {
         "list": []
     }
     
-    editorConfig: AngularEditorConfig = {
-        editable: true,
-        spellcheck: true,
-        height: '15rem',
-        minHeight: '5rem',
-        placeholder: 'Enter text here...',
-        translate: 'no',
-        defaultParagraphSeparator: 'p',
-        defaultFontName: 'Arial',
-        toolbarHiddenButtons: [
-            ['bold']
-        ],
-        customClasses: [
-            {
-                name: "quote",
-                class: "quote",
-            },
-            {
-                name: 'redText',
-                class: 'redText'
-            },
-            {
-                name: "titleText",
-                class: "titleText",
-                tag: "h1",
-            },
-        ]
-    };
-
     constructor(public formBuilder: FormBuilder, public toastr: ToastrService, public auth: AppAuth, public config: Config,
         private modalService: NgbModal) { }
 
     ngOnInit(): void {
         this.blogForm = this.formBuilder.group(
             {
-                title: ["", Validators.required],
-                categoryid: ["", Validators.required],
-                description: ["", Validators.required],
+                title: ["", [Validators.required, Validators.minLength(50), Validators.maxLength(250)]],
+                categoryid: ["", [Validators.required]],
+                description: ["", [Validators.required, Validators.minLength(500)]],
                 file: [""],
             },
         );

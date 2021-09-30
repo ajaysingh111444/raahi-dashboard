@@ -103,3 +103,11 @@ button.btn.calendar {
     border: none;
     height: calc(1.5em + .75rem + 2px);
 }
+
+.keywords label > span {
+    background: #e5e5e5;
+    display: inline-block;
+    margin-right: 5px;
+    padding: 5px 5px 5px 10px;
+    border-radius: 5px;
+}

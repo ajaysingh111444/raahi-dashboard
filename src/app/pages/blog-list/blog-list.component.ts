@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
 import { AppAuth } from "../../services/app-auth.service";
-import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { Config } from "src/app/services/config";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
@@ -21,6 +20,7 @@ export class BlogListComponent implements OnInit {
     action: string = 'Add';
     temp: any = {};
     categories: Array<any> = [];
+    statusList = [];
 
     blogs = {
         "options": {
@@ -38,11 +38,16 @@ export class BlogListComponent implements OnInit {
         private modalService: NgbModal) { }
 
     ngOnInit(): void {
+        this.statusList = this.config.statusList;
+
         this.blogForm = this.formBuilder.group(
             {
                 title: ["", [Validators.required, Validators.minLength(50), Validators.maxLength(250)]],
                 categoryid: ["", [Validators.required]],
+                status: ["", [Validators.required]],
                 description: ["", [Validators.required, Validators.minLength(500)]],
+                metatitle: ["", []],
+                metadescription: ["", []],
                 file: [""],
             },
         );
@@ -122,7 +127,7 @@ export class BlogListComponent implements OnInit {
             "featuredimage": "",
             "youtubeurl": "",
             "description": "",
-            "status": ""
+            "status": "published"
         };
         
         this.auth.addBlog(b).then(
@@ -152,7 +157,7 @@ export class BlogListComponent implements OnInit {
         this.blogForm.reset();
         this.temp = null;
 
-        this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title-add'});
+        this.modalService.open(content, { size: 'lg', scrollable: false });
     }
 
     showEdit(content, blog) {
@@ -162,7 +167,7 @@ export class BlogListComponent implements OnInit {
 
         this.temp = blog;
         this.setFormValues(blog);
-        this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+        this.modalService.open(content, { size: 'lg', scrollable: false });
     }
 
     private setFormValues(blog) {
@@ -171,6 +176,9 @@ export class BlogListComponent implements OnInit {
         b.title.setValue(blog.title);
         b.description.setValue(blog.description);
         b.categoryid.setValue(blog.categoryid);
+        b.status.setValue(blog.status);
+        b.metatitle.setValue(blog.metatitle);
+        b.metadescription.setValue(blog.metadescription);
     }
 
     submitModal(ref) {
@@ -183,6 +191,9 @@ export class BlogListComponent implements OnInit {
             this.temp.title = c.title.value;
             this.temp.description = c.description.value;
             this.temp.categoryid = c.categoryid.value;
+            this.temp.status = c.status.value;
+            this.temp.metatitle = c.metatitle.value;
+            this.temp.metadescription = c.metadescription.value;
 
             let bl = {
                 "bid": this.temp.bid,
@@ -191,7 +202,7 @@ export class BlogListComponent implements OnInit {
                 "featuredimage": this.temp.featuredimage || "",
                 "youtubeurl": this.temp.youtubeurl || "",
                 "description": this.temp.description || "",
-                "metatile": this.temp.metatile || "",
+                "metatitle": this.temp.metatitle || "",
                 "metakeywords": this.temp.metakeywords || "",
                 "metadescription": this.temp.metadescription || "",
                 "status": this.temp.status || "",
@@ -239,7 +250,7 @@ export class BlogListComponent implements OnInit {
             "featuredimage": this.temp.featuredimage || "",
             "youtubeurl": this.temp.youtubeurl || "",
             "description": this.temp.description || "",
-            "metatile": this.temp.metatile || "",
+            "metatitle": this.temp.metatitle || "",
             "metakeywords": this.temp.metakeywords || "",
             "metadescription": this.temp.metadescription || "",
             "status": 'deleted',

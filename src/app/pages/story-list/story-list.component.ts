@@ -25,6 +25,8 @@ export class StoryListComponent implements OnInit {
     displayName: string;
     mnDate: any;
     mxDate: any;
+    statusList = [];
+    keywords = [];
 
     stories = {
         "options": {
@@ -44,6 +46,7 @@ export class StoryListComponent implements OnInit {
         private modalService: NgbModal) {
             
         this.displayName = this.auth.currentUser.firstName +' '+this.auth.currentUser.lastName;
+        this.statusList = this.config.statusList;
         
         let today = moment().add(1, 'days');
         
@@ -62,6 +65,10 @@ export class StoryListComponent implements OnInit {
             targetdate: ["", [Validators.required]],
             targetamount: ["", [Validators.required, Validators.min(100)]],
             targetcurrency: ["", [Validators.required]],
+            metakeywords: ["", []],
+            metatitle: ["", []],
+            metadescription: ["", []],
+            status: ["", [Validators.required]]
         });
 
         this.auth.getStoryCategories().then(
@@ -166,7 +173,8 @@ export class StoryListComponent implements OnInit {
             "report": {},
             "targetdate": "",
             "targetamount": "",
-            "targetcurrency": ""
+            "targetcurrency": "",
+            "status": c.statue.value
         }
         
         this.auth.addStory(st).then(
@@ -193,8 +201,10 @@ export class StoryListComponent implements OnInit {
     showAddModal(content) {
         this.step = 1;
         this.action = "Add";
+        this.keywords = [];
         this.storyForm.reset();
         this.storyForm.controls.categoryid.setValue(this.categories[0].categoryid);
+        this.storyForm.controls.status.setValue(this.statusList[0].value);
         this.storyForm.controls.targetamount.setValue(100);
         this.storyForm.controls.name.setValue(this.displayName);
         this.temp = null;
@@ -222,6 +232,17 @@ export class StoryListComponent implements OnInit {
         b.youtubeurl.setValue(story.youtubeurl);
         b.targetamount.setValue(story.targetamount);
         b.targetcurrency.setValue(story.targetcurrency);
+        b.status.setValue(story.status);
+        
+        if(story.metakeywords && story.metakeywords.length) {
+            this.keywords = story.metakeywords.split(',');
+        }
+        else {
+            this.keywords = [];
+        }
+        
+        b.metatitle.setValue(story.metatitle);
+        b.metadescription.setValue(story.metadescription);
 
         // Handling date
         let d = story.targetdate.split('T')[0].split('-');
@@ -248,6 +269,12 @@ export class StoryListComponent implements OnInit {
             this.temp.targetdate = this.getDate();
             this.temp.targetamount = c.targetamount.value;
             this.temp.targetcurrency = c.targetcurrency.value;
+            this.temp.status = c.status.value;
+
+            this.temp.metakeywords = this.keywords.join(',');
+
+            this.temp.metatitle = c.metatitle.value;
+            this.temp.metadescription = c.metadescription.value;
 
             // Call story update method here
             this.auth.updateStory(this.temp).then(
@@ -324,6 +351,24 @@ export class StoryListComponent implements OnInit {
                 }
             );
         }
+    }
+
+    removeKeyword(k) {
+        let ind = this.keywords.indexOf(k);
+
+        if(ind >= 0) {
+            this.keywords.splice(ind, 1);
+        }
+    }
+
+    addKeyword() {
+        let k = this.f.metakeywords.value;
+
+        if(this.keywords.indexOf(k) < 0) {
+            this.keywords.push(k);
+        }
+
+        this.f.metakeywords.setValue('');
     }
 
 }

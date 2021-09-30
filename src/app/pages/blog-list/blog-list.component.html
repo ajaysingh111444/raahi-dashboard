@@ -94,7 +94,18 @@
                                             <div *ngIf="f.categoryid.errors.required">Category is required.</div>
                                         </div>
                                     </div>
-                                 </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Status *</label>
+                                        <select formControlName="status" class="form-control bg-light">
+                                            <option *ngFor="let s of statusList" [value]="s.value">{{ s.title }}</option>
+                                        </select>
+                                        <div *ngIf="errStep1 && f.status.errors" class="invalid-feedback">
+                                            <div *ngIf="f.status.errors.required">Status is required.</div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <button (click)="next()" class="btn btn-main">Next</button>
                         </div>
@@ -112,6 +123,24 @@
                                         <div *ngIf="errStep2 && f.description.errors" class="invalid-feedback">
                                             <div *ngIf="f.description.errors.required">Description is required.</div>
                                             <div *ngIf="f.description.hasError('minlength') && !f.description.hasError('required')">Description should be minimum 500 characters.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Meta Title</label>
+                                        <input type="text" formControlName="metatitle" class="form-control bg-light" [ngClass]="{ 'is-invalid': errStep2 && f.metatitle.errors }" placeholder="Meta Title" />
+                                        <div *ngIf="errStep2 && f.metatitle.errors" class="invalid-feedback">
+                                            <div *ngIf="f.metatitle.errors.required">Meta Title is required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Meta Description</label>
+                                        <input type="text" formControlName="metadescription" class="form-control bg-light" [ngClass]="{ 'is-invalid': errStep2 && f.metadescription.errors }" placeholder="Meta Description" />
+                                        <div *ngIf="errStep2 && f.metadescription.errors" class="invalid-feedback">
+                                            <div *ngIf="f.metadescription.errors.required">Meta Description is required.</div>
                                         </div>
                                     </div>
                                 </div>

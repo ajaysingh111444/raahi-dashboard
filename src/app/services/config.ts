@@ -70,4 +70,27 @@ export class Config {
         ]
     }
 
+    public statusList = [
+        {
+            value: 'draft',
+            title: 'Draft'
+        },
+        {
+            value: 'inreview',
+            title: 'In Review'
+        },
+        {
+            value: 'hold',
+            title: 'On Hold'
+        },
+        {
+            value: 'published',
+            title: 'Published'
+        },
+        {
+            value: 'deleted',
+            title: 'Deleted'
+        }
+    ];
+
 }

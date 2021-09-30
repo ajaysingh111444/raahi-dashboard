@@ -164,10 +164,7 @@
                             <div class="col-lg-12">
                                 <div class="form-group keywords">
                                     <label>Meta Keywords</label>
-                                    <label style="display: block;">
-                                        <span *ngFor="let k of keywords"> {{k}} <span style="padding: 5px" (click)="removeKeyword(k)">x</span></span>
-                                    </label>
-                                    <input type="text" formControlName="metakeywords" class="form-control bg-light" (keyup.enter)="addKeyword()" placeholder="Meta Keywords" />
+                                    <tag-input formControlName="metakeywords" label="Meta Keywords"></tag-input>
                                     <div *ngIf="errStep2 && f.metakeywords.errors" class="invalid-feedback">
                                         <div *ngIf="f.metakeywords.errors.required">Meta Keywords are required.</div>
                                     </div>

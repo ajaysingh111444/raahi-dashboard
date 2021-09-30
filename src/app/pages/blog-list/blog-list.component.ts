@@ -48,6 +48,7 @@ export class BlogListComponent implements OnInit {
                 description: ["", [Validators.required, Validators.minLength(500)]],
                 metatitle: ["", []],
                 metadescription: ["", []],
+                metakeywords: ["", []],
                 file: [""],
             },
         );
@@ -179,6 +180,7 @@ export class BlogListComponent implements OnInit {
         b.status.setValue(blog.status);
         b.metatitle.setValue(blog.metatitle);
         b.metadescription.setValue(blog.metadescription);
+        b.metakeywords.setValue(blog.metakeywords);
     }
 
     submitModal(ref) {
@@ -194,6 +196,7 @@ export class BlogListComponent implements OnInit {
             this.temp.status = c.status.value;
             this.temp.metatitle = c.metatitle.value;
             this.temp.metadescription = c.metadescription.value;
+            this.temp.metakeywords = c.metakeywords.value;
 
             let bl = {
                 "bid": this.temp.bid,

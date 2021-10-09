@@ -54,6 +54,7 @@ import { TableService } from "./services/table.service";
 import { FileUpload } from "./components/file-upload/file-upload.component";
 import { ProductListComponent } from './pages/product-list/product-list.component';
 import { TagInput } from "./components/tag-input/tag-input.component";
+import { CKEditorModule } from 'ckeditor4-angular';
 
 @NgModule({
   declarations: [
@@ -105,6 +106,7 @@ import { TagInput } from "./components/tag-input/tag-input.component";
     FilterPipeModule,
     AngularEditorModule,
     ChartsModule,
+    CKEditorModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot({
       timeOut: 8000,

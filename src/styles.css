@@ -97,3 +97,6 @@ button.calendar, button.calendar:active {
   background-position: center;
 }
 /* End of Datepicker calendar icon */
+.ck-editor__editable_inline {
+    min-height: 500px;
+}

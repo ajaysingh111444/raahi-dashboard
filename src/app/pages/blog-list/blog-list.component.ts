@@ -11,7 +11,7 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
     styleUrls: ['./blog-list.component.css']
 })
 export class BlogListComponent implements OnInit {
-
+    
     blogForm: FormGroup;
     step: number = 1;
     errStep1: boolean = false;

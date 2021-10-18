@@ -21,7 +21,8 @@ export class BlogListComponent implements OnInit {
     temp: any = {};
     categories: Array<any> = [];
     statusList = [];
-
+    Additionalimage: any;
+    
     blogs = {
         "options": {
             "limit": 10,
@@ -127,6 +128,7 @@ export class BlogListComponent implements OnInit {
             "title": c.title.value,
             "featuredimage": "",
             "youtubeurl": "",
+            "additionalimage": '',
             "description": "",
             "status": "published"
         };
@@ -203,6 +205,7 @@ export class BlogListComponent implements OnInit {
                 "categoryid": this.temp.categoryid,
                 "title": this.temp.title,
                 "featuredimage": this.temp.featuredimage || "",
+                "additionalimage": this.temp.additionalimage || '',
                 "youtubeurl": this.temp.youtubeurl || "",
                 "description": this.temp.description || "",
                 "metatitle": this.temp.metatitle || "",
@@ -251,6 +254,7 @@ export class BlogListComponent implements OnInit {
             "categoryid": this.temp.categoryid,
             "title": this.temp.title,
             "featuredimage": this.temp.featuredimage || "",
+            "additionalimage": this.temp.additionalimage || '',
             "youtubeurl": this.temp.youtubeurl || "",
             "description": this.temp.description || "",
             "metatitle": this.temp.metatitle || "",
@@ -300,4 +304,29 @@ export class BlogListComponent implements OnInit {
             );
         }
     }
+addhandleInputChange(f) {
+    this.config.showLoading();
+
+    if (f.base64url && f.base64url.length > 0) {
+      let sub = 'data:' + f.type + ';base64,';
+      let url = f.base64url.replace(sub, '');
+
+      this.auth.uploadMediaBlog(this.temp.bid, f.name, url).then(
+        (res: any) => {
+          if (res && res.url && res.url.length > 0) {
+            this.temp.additionalimage = res.url;
+            console.log(this.temp.additionalimage);
+            this.Additionalimage = this.temp.additionalimage
+          }
+
+          this.config.dismissLoading();
+        },
+        (err: any) => {
+          this.config.dismissLoading();
+          this.toastr.error(err.title, err.detail);
+        }
+      );
+    }
+  }
+
 }

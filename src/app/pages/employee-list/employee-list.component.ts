@@ -7,6 +7,7 @@ import { TableService } from 'src/app/services/table.service';
 import { Observable } from 'rxjs';
 import { SortableHeaderDirective } from 'src/app/directives/sortable.directive';
 import { Config } from 'src/app/services/config';
+import { MustMatch } from 'src/app/shared/app-validators';
 
 @Component({
     selector: 'app-employee-list',
@@ -58,7 +59,10 @@ export class EmployeeListComponent implements OnInit {
             email: ["", [Validators.required, Validators.email, Validators.pattern(this.pattern)]],
             phonenumber: ["", [Validators.required, Validators.minLength(10), Validators.maxLength(14)]],
             status: [true],
-        })
+            password: ["", Validators.required],
+            confirmPassword: ['', Validators.required],
+        },
+        { validators: [MustMatch('password', 'confirmPassword'), MustMatch( 'confirmPassword', 'password')] })
 
     }
 
@@ -247,7 +251,7 @@ export class EmployeeListComponent implements OnInit {
                 "firstname": v.firstname,
                 "lastname": v.lastname,
                 "middlename": v.middlename,
-                "password": "123456",
+                "password": v.password,
                 "phonenumber": v.phonenumber,
                 "address1": "",
                 "address2": "",

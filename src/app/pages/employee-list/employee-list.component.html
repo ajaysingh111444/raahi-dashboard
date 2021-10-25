@@ -120,6 +120,26 @@
                         </div>
                      </div>
                   </div>
+                  <div class="col-lg-6" *ngIf="action == 'Add'">
+                     <div class="form-group">
+                        <label>Password *</label>
+                        <input type="password" formControlName="password" class="form-control bg-light" placeholder="Password" />
+                        <div *ngIf="showErr && userForm.controls.password.errors" class="invalid-feedback">
+                           <div *ngIf="userForm.controls.password.errors.required">Password is required.</div>
+                           <div *ngIf="userForm.controls.password.errors.mustMatch">Passwords must match.</div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-6" *ngIf="action == 'Add'">
+                     <div class="form-group">
+                        <label>Confirm Password *</label>
+                        <input type="password" formControlName="confirmPassword" class="form-control bg-light" placeholder="Confirm Password"/>
+                        <div *ngIf="showErr && userForm.controls.confirmPassword.errors" class="invalid-feedback">
+                           <div *ngIf="userForm.controls.confirmPassword.errors.required">Confirm Password is required.</div>
+                           <div *ngIf="userForm.controls.confirmPassword.errors.mustMatch">Passwords must match.</div>
+                        </div> 
+                     </div>
+                  </div>
                   <div class="col-lg-6" *ngIf="temp.rolename != 'superadmin'">
                      <div class="form-group">
                         <label>Emp. Status</label>
